@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td><button ng-click="delete()" class="btn btn-danger">删除选中商品</button></td>
-            <td colspan="2">已选择{{items.length}}件商品</td>
+            <td colspan="2">已选择{{itemLength()}}种商品,{{totalAmount()}}件商品</td>
             <td>总价(不含运费):{{total()|currency:'￥'}}
             </td>
             <td>折扣
@@ -51,29 +51,47 @@
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
         //是否全选变量默认为false
         $scope.checkAll = false;
+        //折扣的列表，可以打1到9折
         $scope.discounts = [9,8,7,6,5,4,3,2,1];
+        $scope.itemLength = function(){
+            var num=0;
+            $scope.items.forEach(function(item){
+                if(item.selected)
+                    num++;
+            })
+            return num;
+        }
+        $scope.totalAmount = function(){
+            var num=0;
+            $scope.items.forEach(function(item){
+                if(item.selected)
+                    num+=item.amount;
+            })
+            return num;
+        }
         //给商品列表赋初值
         $scope.items = [
             {
                 name:"MacBook",//商品名称
                 price:6288, //价格
                 amount:1, //数量
-                selected:false
+                selected:false// 是否选中
             },
             {
                 name:"Lenovo",//商品名称
                 price:6799, //价格
                 amount:1, //数量
-                selected:false
+                selected:false//是否选中
             }
         ]
-        //删除某个商品的方法
+        //删除某个商品的方法,参数为要删除的元素
         $scope.remove = function(item){
             //把数组中的每个元素依次传入function内部
             //通过返回值来判断是否保留此元素在数组中
             //true 保留 fasle不保留
             //把过滤后的新数组再赋回给$scope.items
             $scope.items = $scope.items.filter(function(current){
+                //如果当前迭代到的元素不等于被删除元素的应该保留下来
                 return current != item;
             })
         }
@@ -94,18 +112,28 @@
         $scope.delete = function(){
             //过滤删除掉那些选中的,保留未选中的
             $scope.items = $scope.items.filter(function(item){
+                //如果selected为true,意味着选中了
+                //如果选 中了意味着要删除
+                //保留未选中的，选中状态为false
                 return !item.selected;
             });
         }
         //当选中或取消选中某个商品的时候触发
         $scope.selectOne = function(item){
+            //先把当前的选中状态取反
             item.selected = !item.selected;
+            //获取未选中的商品的数量
             var unselectedLength = $scope.items.filter(function(item){
                 return !item.selected;
             }).length;
+            //如果全部选中，那么全选状态为true
+            //如果至少有一个未被选中，那么全选状态为false
             $scope.checkAll = unselectedLength==0;
         }
+        //获取所有选中商品的总金额
         $scope.total = function(){
+            //收敛数组
+
            return  $scope.items.reduce(function(current,item){
                 if(item.selected){
                     return current+item.amount*item.price;
