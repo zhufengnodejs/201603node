@@ -30,8 +30,14 @@
         <tr>
             <td><button ng-click="delete()" class="btn btn-danger">删除选中商品</button></td>
             <td colspan="2">已选择{{items.length}}件商品</td>
-            <td>总价(不含运费):{{total()|currency}}
+            <td>总价(不含运费):{{total()|currency:'￥'}}
             </td>
+            <td>折扣
+                <select name="" id="" ng-model="discount">
+                    <option value="{{count*0.1}}" ng-repeat="count in discounts">{{count}}折</option>
+                </select>
+            </td>
+            <td>折后价{{total()*discount|currency:'￥'}}</td>
         </tr>
     </table>
 </div>
@@ -45,6 +51,7 @@
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
         //是否全选变量默认为false
         $scope.checkAll = false;
+        $scope.discounts = [9,8,7,6,5,4,3,2,1];
         //给商品列表赋初值
         $scope.items = [
             {
