@@ -42,12 +42,12 @@
         <input ng-change="show()" id="exampleInputPassword1" type="text" class="form-control" placeholder="Emial" ng-model="user.email">
     </div>
     <!-- 凡是ng开头的指令，里面的变量都从它所属于的控制器的scope的取值 -->
-    <button ng-click="reg()" type="button" class="btn btn-default">Submit</button>
+    <button ng-disabled="userform.$invalid" ng-click="reg()" type="button" class="btn btn-default">Submit</button>
 </form>
 <div class="panel panel-default">
     <div class="panel-body">
         <!-- 过滤器，把对象以JSON的形式显示出来-->
-       <pre>{{userform.username|json}}</pre>
+       <pre>{{userform|json}}</pre>
     </div>
 </div>
 </body>

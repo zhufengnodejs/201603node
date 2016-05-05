@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body ng-controller="zfpxCtrl" >
+<div class="container">
+    <table class="table table-striped">
+        <tr>
+            <td>商品</td>
+            <td>单价(元)</td>
+            <td>数量</td>
+            <td>小计(元)</td>
+        </tr>
+        <tr ng-repeat="item in items">
+            <td>{{item.name}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.amount}}</td>
+            <td>{{item.price * item.amount}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+<script src="angular.min.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    //定义控制器并给scope增加items属性
+    //赋一个数组，里面放着所有的商品
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+        $scope.items = [
+            {
+                name:"MacBook",//商品名称
+                price:6288, //价格
+                amount:1 //数量
+            },
+            {
+                name:"Lenovo",//商品名称
+                price:6799, //价格
+                amount:1 //数量
+            }
+        ]
+    });
+</script>
+</html>

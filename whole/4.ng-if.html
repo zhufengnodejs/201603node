@@ -15,8 +15,12 @@
 </head>
 <body ng-controller="formCtrl">
   <button ng-click="show = !show">切换</button>
-  <div ng-if="show">
-      <span ng-bind="name"></span>
+  <!--是否执行内部指令-->
+  <div ng-show="show">
+      show:<span ng-bind="name"></span>
+  </div>
+  <div ng-hide="show">
+      hide:<span ng-bind="name"></span>
   </div>
 </div>
 </body>
