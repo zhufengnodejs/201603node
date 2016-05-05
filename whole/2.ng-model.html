@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxModA">
+<head>
+    <meta charset="UTF-8">
+    <title>标题</title>
+    <style>
+        div{
+            border:red 1px solid;
+        }
+    </style>
+</head>
+<body >
+ <div ng-controller="zfpxCtrl">
+    {{name}}
+     <!-- ng-model 会把当前input元素上的value值跟它所在的控制器上的$scope上的name属性绑定-->
+     <input type="text" value="" ng-model="name">
+ </div>
+</body>
+<!--当你引入angular.js之后，会在window上增加一个angular的属性  -->
+<script src="angular.min.js"></script>
+<script>
+ //可以定义一个新的模块,第个参数是模块的名称，第二个参数是模块依赖的其它模块
+ angular.module('zfpxModA',[]);
+ //依赖注入，你需要在函数的参数列表中声明这个形参名称就可以了
+ //表示你的代码需要这样的一个服务，angularbaby 会像个天使，帮你自动创建并注入进来
+ angular.module('zfpxModA').controller('zfpxCtrl',function($scope,$timeout){
+//$scope是一个定义控制器传进来的参数，默认是个空对象{}
+    $scope.name = 'zfpx';
+     // $timeout == setTimeout
+    $timeout(function(){
+        $scope.name = '100';
+    },5000);
+ });
+
+</script>
+</html>

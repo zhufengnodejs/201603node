@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="zfpxMod">
+<html lang="en" ng-app="zfpxModA">
 <head>
     <meta charset="UTF-8">
     <title>标题</title>
+    <style>
+        div{
+            border:red 1px solid;
+        }
+    </style>
 </head>
 <body >
- <div ng-controller="zfpxCtrl">
+ <div ng-controller="zfpxCtrl2">
      <!-- 表达式中变量的取值是从控制器的$scope上取的 zfpxCtrl.$scope.xxx -->
-    {{xxx}}
+     你今天很{{heart}}吗!快给大家分享一下吧，让大家开心一下
+     <div ng-controller="zfpxCtrl">
+         你今天很{{age}}吗!快给大家分享一下吧，让大家开心一下
+     </div>
  </div>
 </body>
 <!--当你引入angular.js之后，会在window上增加一个angular的属性  -->
 <script src="angular.min.js"></script>
 <script>
- //可以定义一个新的模块
- angular.module('zfpxMod',[]);
+ //可以定义一个新的模块,第个参数是模块的名称，第二个参数是模块依赖的其它模块
+ angular.module('zfpxModA',['zfpxModB']);
+ angular.module('zfpxModB',[]);
  //可以获取一个定义过的模块，如果模块没有定义过，会报错
  //在模块下面可以声明一个控制器，控制器用来获取数据
  //1.控制器的名称 第二个参数是控制器的定义
@@ -23,9 +32,14 @@
   * 框架 是我们写代码，然后由框架来调用
   */
  //当定义一个控制器的时候，会买一送一送你一个$scope
- angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+ angular.module('zfpxModA').controller('zfpxCtrl',function($scope){
 //$scope是一个定义控制器传进来的参数，默认是个空对象{}
-    $scope.xxx = 'zfpx';
+    $scope.heart = '开心';
+ });
+
+ angular.module('zfpxModB').controller('zfpxCtrl2',function($scope){
+//$scope是一个定义控制器传进来的参数，默认是个空对象{}
+     $scope.age = '伤心';
  });
 
 </script>
