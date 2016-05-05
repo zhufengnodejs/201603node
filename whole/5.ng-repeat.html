@@ -29,6 +29,9 @@
         </tr>
         <tr>
             <td><button ng-click="delete()" class="btn btn-danger">删除选中商品</button></td>
+            <td colspan="2">已选择{{items.length}}件商品</td>
+            <td>总价(不含运费):{{total()|currency}}
+            </td>
         </tr>
     </table>
 </div>
@@ -94,6 +97,16 @@
                 return !item.selected;
             }).length;
             $scope.checkAll = unselectedLength==0;
+        }
+        $scope.total = function(){
+           return  $scope.items.reduce(function(current,item){
+                if(item.selected){
+                    return current+item.amount*item.price;
+                }else{
+                    return current;
+                }
+
+            },0)
         }
     });
 </script>
