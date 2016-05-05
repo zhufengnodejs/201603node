@@ -20,10 +20,22 @@
     </script>
 </head>
 <body ng-controller="formCtrl">
-<form>
-    <div class="form-group">
+<!-- 在scope上添加一个userform的属性，它是一个对象 -->
+<!-- userform有一个username的属性 -->
+
+<form name="userform">
+    <div class="form-group" ng-class="{'has-error':userform.username.$invalid,'has-success':userform.username.$valid}">
         <label for="exampleInputEmail1">用户名：</label>
-        <input type="text" class="form-control" ng-model="user.name" id="exampleInputEmail1" placeholder="username">
+        <input name="username" ng-minlength="6" ng-maxlength="9" ng-required="true" ng-pattern="/^[0-9a-zA-Z_]+$/" type="text" class="form-control" ng-model="user.name" id="exampleInputEmail1" placeholder="username">
+        <p class="help-block" ng-if="userform.username.$error.minlength">
+            太短
+        </p>
+        <p class="help-block" ng-if="userform.username.$error.maxlength">
+            太长
+        </p>
+        <p class="help-block" ng-if="userform.username.$error.pattern">
+            只能包含数字、字母、下划线
+        </p>
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">邮箱：</label>
@@ -35,7 +47,7 @@
 <div class="panel panel-default">
     <div class="panel-body">
         <!-- 过滤器，把对象以JSON的形式显示出来-->
-       <pre>{{user|json}}</pre>
+       <pre>{{userform.username|json}}</pre>
     </div>
 </div>
 </body>

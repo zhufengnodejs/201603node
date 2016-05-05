@@ -14,7 +14,8 @@
     </script>
 </head>
 <body ng-controller="formCtrl">
-  <div ng-if="false">
+  <button ng-click="show = !show">切换</button>
+  <div ng-if="show">
       <span ng-bind="name"></span>
   </div>
 </div>
