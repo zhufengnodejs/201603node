@@ -20,3 +20,8 @@ var items = [1,2,3];
 items.forEach(function(item){
     console.log(item);
 })
+
+
+var obj = {num:1};
+obj.num--;
+console.log(obj.num);

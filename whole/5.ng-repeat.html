@@ -13,12 +13,17 @@
             <td>单价(元)</td>
             <td>数量</td>
             <td>小计(元)</td>
+            <td>操作</td>
         </tr>
         <tr ng-repeat="item in items">
             <td>{{item.name}}</td>
             <td>{{item.price}}</td>
-            <td>{{item.amount}}</td>
+            <td>
+                <button ng-click="item.amount=item.amount-1">-</button>
+                <input type="text" ng-model="item.amount"><button ng-click="item.amount = item.amount+1">+</button>
+            </td>
             <td>{{item.price * item.amount}}</td>
+            <td><button ng-click="remove(item)">删除</button></td>
         </tr>
     </table>
 </div>
@@ -41,6 +46,15 @@
                 amount:1 //数量
             }
         ]
+        $scope.remove = function(item){
+            //把数组中的每个元素依次传入function内部
+            //通过返回值来判断是否保留此元素在数组中
+            //true 保留 fasle不保留
+            //把过滤后的新数组再赋回给$scope.items
+            $scope.items = $scope.items.filter(function(current){
+                return current != item;
+            })
+        }
     });
 </script>
 </html>
