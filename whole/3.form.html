@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="webApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module("webApp",[])
+                .controller("formCtrl",function($scope){
+                    $scope.user= {};
+                    $scope.reg = function(){
+                        console.log($scope.user);
+                    }
+
+                })
+    </script>
+</head>
+<body ng-controller="formCtrl">
+<form>
+    <div class="form-group">
+        <label for="exampleInputEmail1">用户名：</label>
+        <input type="text" class="form-control" ng-model="user.name" id="exampleInputEmail1" placeholder="username">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">邮箱：</label>
+        <input id="exampleInputPassword1" type="text" class="form-control" placeholder="Emial" ng-model="user.email">
+    </div>
+    <!-- 凡是ng开头的指令，里面的变量都从它所属于的控制器的scope的取值 -->
+    <button ng-click="reg()" type="button" class="btn btn-default">Submit</button>
+</form>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <!-- 过滤器，把对象以JSON的形式显示出来-->
+       <pre>{{user|json}}</pre>
+    </div>
+</div>
+</body>
+</html>

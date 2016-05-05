@@ -10,10 +10,10 @@
     </style>
 </head>
 <body >
- <div ng-controller="zfpxCtrl2">
+ <div ng-controller="zfpxCtrl">
      <!-- 表达式中变量的取值是从控制器的$scope上取的 zfpxCtrl.$scope.xxx -->
-     你今天很{{heart}}吗!快给大家分享一下吧，让大家开心一下
-     <div ng-controller="zfpxCtrl">
+     你今天很 <span ng-bind="heart"></span> 吗!快给大家分享一下吧，让大家开心一下
+     <div ng-controller="zfpxCtrl2">
          你今天很{{age}}吗!快给大家分享一下吧，让大家开心一下
      </div>
  </div>

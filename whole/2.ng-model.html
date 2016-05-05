@@ -27,9 +27,11 @@
 //$scope是一个定义控制器传进来的参数，默认是个空对象{}
     $scope.name = 'zfpx';
      // $timeout == setTimeout
-    $timeout(function(){
+    var $timer = $timeout(function(){
         $scope.name = '100';
-    },5000);
+        $timeout.clearTimeout($timer);
+    },0);
+
  });
 
 </script>
