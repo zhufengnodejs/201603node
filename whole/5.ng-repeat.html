@@ -21,8 +21,8 @@
             <td>{{item.name}}</td>
             <td>{{item.price}}</td>
             <td>
-                <button  ng-click="item.amount=item.amount-1">-</button>
-                <input  type="text" ng-model="item.amount"><button ng-click="item.amount = item.amount+1">+</button>
+                <button class="btn btn-xs" ng-disabled="item.amount<=1"  ng-click="item.amount=item.amount-1">-</button>
+                <input  type="text" ng-model="item.amount"><button class="btn btn-xs" ng-click="item.amount = item.amount+1">+</button>
             </td>
             <td>{{item.price * item.amount}}</td>
             <td><button class="btn btn-danger"  ng-click="remove(item)">删除</button></td>
@@ -35,11 +35,14 @@
 </body>
 <script src="angular.min.js"></script>
 <script>
+    //先定义一个模块
     angular.module('zfpxMod',[]);
     //定义控制器并给scope增加items属性
     //赋一个数组，里面放着所有的商品
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+        //是否全选变量默认为false
         $scope.checkAll = false;
+        //给商品列表赋初值
         $scope.items = [
             {
                 name:"MacBook",//商品名称
@@ -54,6 +57,7 @@
                 selected:false
             }
         ]
+        //删除某个商品的方法
         $scope.remove = function(item){
             //把数组中的每个元素依次传入function内部
             //通过返回值来判断是否保留此元素在数组中
@@ -65,12 +69,20 @@
         }
         //把items里所有的元素的selected属性设置为true
         $scope.selectAll = function(){
-            $scope.items.forEach(function(item){
-                item.selected = true;
-            })
+            if($scope.checkAll){
+                $scope.items.forEach(function(item){
+                    item.selected = false;
+                })
+            }else{
+                $scope.items.forEach(function(item){
+                    item.selected = true;
+                })
+            }
+            $scope.checkAll = !$scope.checkAll;
         }
         //删除item的selected属性为true的那些元素
         $scope.delete = function(){
+            //过滤删除掉那些选中的,保留未选中的
             $scope.items = $scope.items.filter(function(item){
                 return !item.selected;
             });
@@ -78,10 +90,10 @@
         //当选中或取消选中某个商品的时候触发
         $scope.selectOne = function(item){
             item.selected = !item.selected;
-            var length = $scope.items.filter(function(item){
+            var unselectedLength = $scope.items.filter(function(item){
                 return !item.selected;
             }).length;
-            $scope.checkAll = length==0;
+            $scope.checkAll = unselectedLength==0;
         }
     });
 </script>
