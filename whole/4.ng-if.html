@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="webApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module("webApp",[])
+                .controller("formCtrl",function($scope){
+    $scope.name = 'hello';
+
+                })
+    </script>
+</head>
+<body ng-controller="formCtrl">
+  <div ng-if="false">
+      <span ng-bind="name"></span>
+  </div>
+</div>
+</body>
+</html>
