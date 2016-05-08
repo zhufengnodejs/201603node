@@ -29,3 +29,18 @@ git commit -m"init"
 git remote add origin https://github.com/zhufengnodejs/npmtest.git
 git push -u origin master
 ```
+
+#发布到npm官网上去
+1. 注册用户
+```
+npm adduser
+```
+
+> 输入用户名 密码 邮箱 进行注册，用户名一定也要是别人没用过的
+
+2. 发布项目
+```
+npm publish
+```
+
+> 注意此项目名一定是别人没用过的，
