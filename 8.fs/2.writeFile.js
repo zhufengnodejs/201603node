@@ -20,8 +20,21 @@ try{
 //有Sync 就是同步，没有Sync就是异步
 fs.appendFileSync('2.txt','你好','utf8');
 
-
+/**
+ * 读取源文件的内容，并写到目标文件里去
+ * @param src 源文件
+ * @param target 目标文件
+ */
 function copy(src,target){
+
+}
+/**
+ * 剪切(移动)文件
+ * 把一个文件从一个地方移动到另一个地方
+ * @param src
+ * @param target
+ */
+function mv(src,target){
 
 }
 
