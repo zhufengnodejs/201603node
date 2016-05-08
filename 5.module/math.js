@@ -8,12 +8,14 @@
 //console.log(module);
 
 //function math(exports,require,module,__filename,__dirname){
-//    var exports = module.exports;
+//console.log(module);
 //--------------------------
     //console.log(exports === module.exports);
     console.log('exec....');
     var add = (a,b) => a+b;
-    module.exports = add;
+   /* module.exports = add;
+    module.exports.add = add;*/
+module.exports = exports = add;
 //--------------------------
 //    return module.exports;
 //}
