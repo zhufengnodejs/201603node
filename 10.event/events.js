@@ -1,6 +1,6 @@
 function EventEmitter(){
-    this._events = {};
-    this._maxListeners = 10;
+    this._events = {};//事件对象
+    this._maxListeners = 10;//最大监听数量
 }
 //注册监听函数
 EventEmitter.prototype.on = EventEmitter.prototype.addListener = function(event,listener){
