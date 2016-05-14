@@ -7,6 +7,7 @@ var path = require('path');
 fs.mkdirp = function(dir){
  //先把路径转成数组
  var args = dir.split(path.sep);
+ // ['a','b','c']
  //循环数组
  for(var i=0;i<args.length;i++){
      //得到当前的路径
