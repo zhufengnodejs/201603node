@@ -16,6 +16,17 @@ server.on('request',function(req,res){
         fs.readFile('./index.html',function(err,data){
             res.end(data);
         })
+    }else if(pathname == '/clock'){
+        res.setHeader('clock','clock');
+        var str = '';
+        req.on('data',function(data){
+            str+=data;
+        });
+        console.log(str);
+        req.on('end',function(){
+            res.end(str+ new Date().toLocaleString());
+        });
+
     }else{
         fs.exists('.'+pathname,function(exists){
             if(exists){

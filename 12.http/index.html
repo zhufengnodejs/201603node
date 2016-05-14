@@ -7,7 +7,28 @@
 </head>
 <body>
 <h1>hello</h1>
-<img src="/rain.jpg" alt="雨">
+<img style="width:100px;height:100px" src="/rain.jpg" alt="雨">
+<button onclick="showTime()">显示时间</button>
+<div id="clock"></div>
 </body>
 <script src="/index.js"></script>
+<script>
+    function showTime(){
+        //创建ajax对象
+        var xhr = new XMLHttpRequest();
+        //打开连接
+        xhr.open('POST','/clock',true);
+        //注册回调函数
+        xhr.onreadystatechange = function(){
+            //readstate等于4表示已经准备就绪
+            // 2xx表示响应正常结束
+           if(xhr.readyState == 4 &&  /2\d{2}/.test(xhr.status)){
+               document.querySelector('#clock').innerHTML = xhr.responseText;
+
+           }
+        }
+        //参数会作为请求体发送到服务器端
+        xhr.send('当前时间:');
+    }
+</script>
 </html>
