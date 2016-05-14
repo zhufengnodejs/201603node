@@ -7,6 +7,7 @@ Person.prototype.eat = function () {
 }
 function Teacher(name) {
 }
+
 //原型继承, 只继承 prototype上的方法，不继承私有属性
 util.inherits(Teacher, Person);
 
