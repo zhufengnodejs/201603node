@@ -1,18 +1,27 @@
 var fs=require('fs');
-
-function copy(src, target) {
-    var rs=fs.createReadStream('./'+src);
-    var ws=fs.createWriteStream('./'+target);
-    rs.on('data',function (data) {
-        var flag=ws.write(data);
-        if(flag){
-            rs.resume();
-        }else{
-            rs.pause();
-            setTimeout(function () {
-                rs.resume();
-            },1000)
-        }
+/*
+function copy(src,tar){
+    var kedu=fs.createReadStream(src,{
+    })
+    var kexie=fs.createWriteStream(tar,{
+    })
+    kedu.on('data',_write)
+    kedu.on('end',function(){
+        kexie.end('')
+    })
+    function _write(tata){
+        var flag = kexie.write(tata);;
+        if(!flag)
+         kedu.pause()
+    }
+    kexie.on('drain',function(){
+        kedu.resume()
     });
 }
-copy('1.txt','2.txt');
+copy('1.txt','4.txt');
+*/
+var ws = fs.createWriteStream('2.txt');
+fs.createReadStream('1.txt').pipe(ws,{end:false});
+setTimeout(function(){
+    ws.write('hello');
+},3000)
