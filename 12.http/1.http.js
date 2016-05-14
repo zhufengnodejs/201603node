@@ -5,10 +5,13 @@ var server = http.createServer();
 
 //http://user:pass@www.zfpx.cn:80/node/index.html?name=zfpx#top
 server.on('request',function(req,res){
-    console.log(req.url);
   var urlObj = url.parse(req.url);
-  console.log(urlObj);
-  res.end('hello');
+  console.log(urlObj.pathname);//路径名
+  console.log(urlObj.query);//查询字符串对象
+  console.log(req.headers);
+
+  res.write('hello');//定入响应
+  res.end('world');//写入响应并结束
 });
 // 端口号是用来在区分在一台服务器上的不同服务的
 server.listen(8080);
