@@ -7,18 +7,19 @@
 <body>
 
 </body>
-<script src="xhr.js"></script>
+<script src="/xhr.js"></script>
 <script>
     //新建ajax对象
     var xhr = getXHR(); //0
     console.log('xhr.readyState',xhr.readyState);
     //打开请求
-    xhr.open('GET','user.json',true);
+    xhr.open('GET','/ajax',true);
     console.log('xhr.readyState',xhr.readyState);
 
     //注册当readyState变化时的回调
     xhr.onreadystatechange = function(){
-       if(xhr.readyState == xhr.DONE){
+        console.log(xhr.readyState,xhr.status);
+       if(xhr.readyState == xhr.DONE && /2\d{2}/.test(xhr.status)){
            console.log(xhr.responseText);
        }
     }
