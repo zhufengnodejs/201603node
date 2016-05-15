@@ -18,7 +18,7 @@ function readFile(filename){
     var promise = new Promise();
     fs.readFile(filename,function(err,data){
         if(err){
-            promise.
+
         }
     })
     return promise;
