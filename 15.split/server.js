@@ -33,4 +33,6 @@ http.createServer(function(req,res){
 
   })
     request.end();//直接发送请求
+
+
 }).listen(9090);
