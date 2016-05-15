@@ -7,6 +7,8 @@ var server = http.createServer(function(req,res){
     var pathname = urlObj.pathname;
     if(pathname=='/'){
         fs.createReadStream('./index.html').pipe(res);
+    }else if(pathname == '/favicon.ico'){
+        fs.createReadStream('./favicon.ico').pipe(res);
     }else if(pathname == '/xhr.js'){
         fs.createReadStream('./xhr.js').pipe(res);
     }else if(pathname == '/ajax'){

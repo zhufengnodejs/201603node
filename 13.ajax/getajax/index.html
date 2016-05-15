@@ -13,7 +13,7 @@
     var xhr = getXHR(); //0
     console.log('xhr.readyState',xhr.readyState);
     //打开请求
-    xhr.open('GET','/ajax',true);
+    xhr.open('GET','http://localhost:8080/ajax',true);
     console.log('xhr.readyState',xhr.readyState);
 
     //注册当readyState变化时的回调
