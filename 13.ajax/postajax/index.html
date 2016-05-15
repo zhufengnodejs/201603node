@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="userform" onsubmit="return reg()">
+    用户名 <input type="text" name="username"><br/>
+    密码 <input type="text" name="password"><br/>
+    <button >注册</button>
+</form>
+</body>
+<script src="/xhr.js"></script>
+<script>
+    function ser(form){
+        //得到表单中的所有元素
+        var formElements = form.elements;
+        var arr = [];
+        for(var i=0;i<formElements.length;i++){
+            // submit reset button text select checkbox radio
+            console.log(formElements[i].type);
+            if(formElements[i].type !='submit')
+                arr.push(formElements[i].name+'='+formElements[i].value);
+        }
+        return arr.join('&');
+    }
+
+    function reg(){
+        //新建ajax对象
+        var xhr = getXHR(); //0
+        //打开请求
+        xhr.open('POST','/reg',true);
+        //注册当readyState变化时的回调
+        xhr.onreadystatechange = function(){
+            console.log(xhr.readyState,xhr.status);
+            if(xhr.readyState == xhr.DONE && /2\d{2}/.test(xhr.status)){
+                console.log(xhr.responseText);
+            }
+        }
+        //异步发送请求
+        xhr.send(ser(document.querySelector('#userform')));
+        return false;
+    }
+
+</script>
+</html>
