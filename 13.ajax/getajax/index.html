@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="xhr.js"></script>
+<script>
+    //新建ajax对象
+    var xhr = getXHR(); //0
+    console.log('xhr.readyState',xhr.readyState);
+    //打开请求
+    xhr.open('GET','user.json',true);
+    console.log('xhr.readyState',xhr.readyState);
+
+    //注册当readyState变化时的回调
+    xhr.onreadystatechange = function(){
+       if(xhr.readyState == xhr.DONE){
+           console.log(xhr.responseText);
+       }
+    }
+    //异步发送请求
+    xhr.send();
+    console.log('xhr.readyState',xhr.readyState);
+</script>
+</html>
