@@ -1,10 +1,10 @@
 var http = require('http');
 var options = {
-    hostname: 'www.baidu.com',
-    port: 80,
-    headers: {name: 'zfpx'},
-    path: '/',
-    method: 'get'
+    hostname: 'localhost',//主机名
+    port: 9090,//端口号
+    headers: {name: 'zfpx'},//请求头
+    path: '/node/index.html',//请求路径
+    method: 'get'//方法名
 }
 //request 是一个可写流
 var request = http.request(options, function (response) {
@@ -17,6 +17,6 @@ var request = http.request(options, function (response) {
        console.log(str);
     });
 });
-request.write('hello');
+request.write('hello');//写请求体
 request.end();//当调用end方法的时候才会真正向服务器发起请求
 
