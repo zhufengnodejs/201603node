@@ -11,6 +11,9 @@
 <script>
     window.onload = function(){
         $.ajax({
+            beforeSend:function(){
+              alert('发送之前调用一下我');
+            },
             url:'/clock',
             method:'get',//请求方法
             processData:false,//是否把发送的data对象转成查询字符串
@@ -23,10 +26,20 @@
             timeout:0,//超时时间(当多长时间请求没有发出就自动放弃发请求) 0表示不设置超时时间
             headers:{age:6},//自定义的请求头
             context:document.querySelector('#content'), //回调函数的上下文对象 this
+            dataFilter:function(data){
+                data.time = '当前时间:'+data.time;
+                return {time:'ts'};
+            },
+            statusCode:{
+                404:function(){
+                    window.alert('你要的页面不存在');
+
+                }
+            },
             success:function(data){
                 this.innerHTML = data.time;
             },
-            error:function(){
+            error:function(err){
                 this.innerHTML = err;
             }
         })
