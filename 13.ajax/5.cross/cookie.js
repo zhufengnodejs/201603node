@@ -9,7 +9,9 @@ var visit = {
 var count = 0;
 http.createServer(function(req,res){
     res.setHeader('Content-Type','text/html;charset=utf-8');
-    res.setHeader('Access-Control-Allow-Origin','*');
+    res.setHeader('Access-Control-Allow-Origin','http://localhost:63342');
+    res.setHeader('Access-Control-Allow-Credentials','true');
+
     if(req.url == '/ajax'){
         var cookie = req.headers.cookie;
         var cookieObj = querystring.parse(cookie);
