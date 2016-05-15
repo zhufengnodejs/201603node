@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="content"></div>
+</body>
+<script src="//cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+<script>
+    window.onload = function(){
+        $.ajax({
+            url:'/clock',
+            method:'get',//请求方法
+            processData:false,//是否把发送的data对象转成查询字符串
+            data:123,//请求体对象
+            async:true,//是否异步
+            dataType:'json',//响应的类型
+            cache:false,//是否缓存 如果不缓存的话会在尾部 time=Date.now()
+            username:undefined,//用户名
+            password:undefined,//密码
+            timeout:0,//超时时间(当多长时间请求没有发出就自动放弃发请求) 0表示不设置超时时间
+            headers:{age:6},//自定义的请求头
+            context:document.querySelector('#content'), //回调函数的上下文对象 this
+            success:function(data){
+                this.innerHTML = data.time;
+            },
+            error:function(){
+                this.innerHTML = err;
+            }
+        })
+      /*.done(function(data){
+            alert(data);
+            console.log(data);
+            this.innerHTML = data.time;
+        }).fail(function(err){
+            alert('error'+err);
+            this.innerHTML = err;
+        })*/
+    }
+</script>
+</html>

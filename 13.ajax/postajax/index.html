@@ -26,20 +26,53 @@
         return arr.join('&');
     }
 
+    function toJson(form){
+        //得到表单中的所有元素
+        var formElements = form.elements;
+        var result = {};
+        for(var i=0;i<formElements.length;i++){
+            // submit reset button text select checkbox radio
+            console.log(formElements[i].type);
+            if(formElements[i].type !='submit')
+                result[formElements[i].name] = formElements[i].value;
+        }
+        return JSON.stringify(result);
+    }
+
     function reg(){
         //新建ajax对象
         var xhr = getXHR(); //0
         //打开请求
         xhr.open('POST','/reg',true);
+        //这表示请求体中的类型是查询字符串
+        //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        //表示请求体中的类型是json字符串
+       // xhr.setRequestHeader('Content-Type','application/json');
+        //强行把response改为json对象类型 json '' text  document
+        /**
+         * '' text response responseText 都是字符串
+         * json response 是json
+         * document response responseXML 都是dom
+         */
+        xhr.responseType = 'document';
         //注册当readyState变化时的回调
         xhr.onreadystatechange = function(){
             console.log(xhr.readyState,xhr.status);
             if(xhr.readyState == xhr.DONE && /2\d{2}/.test(xhr.status)){
-                console.log(xhr.responseText);
+               /* console.log(xhr.getAllResponseHeaders());
+                //得到内容类型响应头
+                var contentType = xhr.getResponseHeader('content-type');
+                if(contentType =='application/json'){
+                    console.log((JSON.parse(xhr.responseText)));
+                }*/
+                console.log(xhr.response);
+               // console.log(xhr.responseText);
+                console.log(xhr.responseXML);
             }
         }
         //异步发送请求
-        xhr.send(ser(document.querySelector('#userform')));
+        //xhr.send(ser(document.querySelector('#userform')));
+        xhr.send(toJson(document.querySelector('#userform')));
         return false;
     }
 

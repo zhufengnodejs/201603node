@@ -11,27 +11,17 @@ var server = http.createServer(function(req,res){
         fs.createReadStream('./index.html').pipe(res);
     }else if(pathname == '/favicon.ico'){
         fs.createReadStream('./favicon.ico').pipe(res);
-    }else if(pathname == '/reg'){
+    }else if(pathname == '/clock'){
+        console.log(req.method);//获取请求方法名
         var str = '';
-       req.on('data',function(data){
-           str+=data;
-       });
-        // str  username=zfpx&age=6
-       req.on('end',function(){
-           var contentType = req.headers['content-type'];
-           var result ;
-           if(contentType == 'application/x-www-form-urlencoded'){
-               result = querystring.parse(str);
-               console.log(result);
-           }else if(contentType == 'application/json'){
-               result = JSON.parse(str);
-               console.log(result);
-           }
-           //设置响应头，响应体的类型是json
-           res.setHeader('Content-Type','application/json');
-           //res.end(JSON.stringify(result));
-           res.end('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>Title</title></head><body></body></html>');
-       });
+        req.on('data',function(data){
+            str+=data;
+        });
+        req.on('end',function(){
+            console.log(str);
+            console.log(req.headers.age);
+            res.end(JSON.stringify({"time":new Date().toLocaleString()}));
+        });
 
     }else if(pathname == '/xhr.js'){
         fs.createReadStream('./xhr.js').pipe(res);
