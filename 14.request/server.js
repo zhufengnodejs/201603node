@@ -10,7 +10,8 @@ http.createServer(function(req,res){
         str+= data;
     });
     req.on('end',function(data){
+        console.log('end');
         res.end(str);
     });
-
+    //res.end(str);
 }).listen(9090);
