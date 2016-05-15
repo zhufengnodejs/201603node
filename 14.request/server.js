@@ -11,6 +11,10 @@ http.createServer(function(req,res){
     });
     req.on('end',function(data){
         console.log('end');
+        var contentType = req.headers['content-type'];
+        if(contentType =='application/json'){
+            console.log(JSON.parse(str));
+        }
         res.end(str);
     });
     //res.end(str);
