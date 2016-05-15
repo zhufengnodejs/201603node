@@ -37,7 +37,7 @@
             //得到关键字
             var keyword = document.querySelector('#keyword').value;
             //指定脚本的源文件位置
-            script.src = 'http://suggestion.baidu.com/su?wd='+keyword+'&cb=show';
+            script.src = '/su?wd='+keyword+'&cb=show';
             //追加脚本对象到body中
             document.body.appendChild(script);
         }
