@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="text" id="keyword">
+<input type="button" value="搜索" onclick="search()">
+<ul id="content">
+
+</ul>
+</body>
+<script>
+    function show(result){
+        //取出关键字的数组
+        var keywords = result.s;
+        //得到ul
+        var content = document.querySelector('#content');
+        //先清空原来的内容
+        content.innerHTML = '';
+        //创建一个HTML片断
+        var fragment = document.createDocumentFragment();
+        //循环每个提示词
+        keywords.forEach(function(keyword){
+            var li = document.createElement('li');
+            li.innerHTML = keyword;
+            fragment.appendChild(li);
+        });
+        //把片断添加UL中
+        content.appendChild(fragment);
+    }
+    window.onload = function(){
+        window.search = function(){
+            //1.创建一个script元素
+            var script = document.createElement('script');
+            //得到关键字
+            var keyword = document.querySelector('#keyword').value;
+            //指定脚本的源文件位置
+            script.src = 'http://suggestion.baidu.com/su?wd='+keyword+'&cb=show';
+            //追加脚本对象到body中
+            document.body.appendChild(script);
+        }
+    }
+</script>
+</html>
