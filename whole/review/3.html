@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body ng-controller="zfpxCtrl">
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li ng-click="selectedMenu='Home'" role="presentation" ng-class="{active:'Home'==selectedMenu}"><a href="#">Home</a></li>
+        <li ng-click="selectedMenu='Profile'" role="presentation" ng-class="{active:'Profile'==selectedMenu}"><a href="#">Profile</a></li>
+        <li ng-click="selectedMenu='Messages'" role="presentation" ng-class="{active:'Messages'==selectedMenu}"><a href="#">Messages</a></li>
+    </ul>
+</div>
+</body>
+<script src="../angular.min.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    //定义控制器的时候会送一个 $scope
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$sce){
+        $scope.name = 'zfpx1';
+        $scope.age = 7;
+        $scope.selectedMenu='Home';
+        // $sce可以进行HMTL片断过滤，把非法的不安全的HTML片断过滤掉,只保留安全的片断，转换后的值 才能被 ng-bind-html使用
+        $scope.html = $sce.trustAsHtml('<h1>hello</h1>') ;
+    });
+
+</script>
+</html>
