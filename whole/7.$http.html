@@ -23,12 +23,11 @@
         }
     });
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$http) {
+        // jquery ajax封装
         $http({
             url:'http://localhost:9090/books',
             method:'GET',
-        })
-
-                .success(function(data){
+        }).success(function(data){
             $scope.books = data;
             console.log(arguments);
         }).error(function(){

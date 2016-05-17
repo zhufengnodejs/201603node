@@ -78,6 +78,8 @@
     angular.module('zfpxMod',[]);
     angular.module('zfpxMod').filter('pager',function(){
         return function(input,pageNum,pageSize){
+            // 1 0,2
+            // 2 2,4
             return input.slice((pageNum-1)*pageSize,pageNum*pageSize);
         }
     });
@@ -94,7 +96,9 @@
             {id:4,name:'4',age:1}
         ]
         $scope.pages = [];//存放一共有多少页
+        //先算出总页数
         $scope.totalPage = Math.ceil($scope.users.length/$scope.pageSize);
+
         for(var i=0;i<$scope.totalPage;i++){
             $scope.pages.push(i+1);
         }

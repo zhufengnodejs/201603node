@@ -18,6 +18,7 @@
 {{'ABCD'|lowercase}}
 {{'abcd'|uppercase}}
 {{'great'|upperFirst:2:2}}
+{{1|add:1:2:3:4}}
 </body>
 <script src="angular.min.js"></script>
 <script>
@@ -27,6 +28,14 @@
             return input.slice(0,pre).toUpperCase()
             +input.slice(pre,-1*after)
             +input.slice(-1*after).toUpperCase();
+        }
+    });
+    angular.module('zfpxMod').filter('add',function(){
+        return function(input){
+            //return eval(Array.from(arguments).join('+'));
+           return  Array.from(arguments).reduce(function(curr,next){
+              return curr+next;
+            });
         }
     });
     angular.module('zfpxMod').controller('zfpxCtrl', function ($scope) {

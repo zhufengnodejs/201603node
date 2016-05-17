@@ -5,11 +5,12 @@
     <title>Title</title>
 </head>
 <body ng-controller="zfpxCtrl">
+{{fff}}dfdfd{{{dd}}}
 <input type="text" ng-model="name">
 <!-- 绑定控制器上的$scope上的一个属性 -->
 <span ng-bind="name"></span>
 <!-- 绑定一个模块 -->
-<span ng-bind-template="{{name}}{{age}}"></span>
+<span ng-bind-template="{{name}}hello{{age}}"></span>
 <!-- 不转换span内部的表达式 -->
 <span ng-non-bindable >{{name}}{{age}}</span>
 <!-- 绑定一个安全的受信任的html片断字符串 -->
