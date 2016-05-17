@@ -48,7 +48,7 @@
                     <td>姓名</td>
                     <td>年龄</td>
                 </tr>
-                <tr ng-repeat="user in users|filter:search">
+                <tr ng-repeat="user in users|filter:search|orderBy:or">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.age}}</td>
