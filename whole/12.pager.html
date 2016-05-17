@@ -54,6 +54,21 @@
                     <td>{{user.age}}</td>
                 </tr>
             </table>
+            <nav>
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li ng-repeat="page in pages"><a href="#">{{page}}</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -68,12 +83,19 @@
         }
     });
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+        $scope.pageNumber = 1;
+        $scope.pageSize = 2;
         $scope.users = [
             {id:1,name:'1',age:4},
             {id:2,name:'2',age:3},
             {id:3,name:'3',age:2},
             {id:4,name:'4',age:1}
         ]
+        $scope.pages = [];//存放一共有多少页
+        $scope.totalPage = Math.ceil($scope.users.length/$scope.pageSize);
+        for(var i=0;i<$scope.totalPage;i++){
+            $scope.pages.push(i+1);
+        }
     });
 </script>
 </html>
