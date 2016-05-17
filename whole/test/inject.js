@@ -32,5 +32,5 @@ var inject = function(fn){
     fn.apply(null,arr);
 }
 inject(zfpxCtrl);
-
+inject(zfpxCtrl);
 

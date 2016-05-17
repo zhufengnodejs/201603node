@@ -6,10 +6,12 @@
 </head>
 <body>
 <div ng-controller="zfpxCtrl">
-
+    <input type="text" ng-model="name">
+    <span>{{name}}</span>
 </div>
 <div ng-controller="zfpxCtrl">
-
+    <input type="text" ng-model="name">
+    <span>{{name}}</span>
 </div>
 <div ng-controller="zfpxCtrl2">
 
@@ -18,7 +20,9 @@
 <script src="angular.min.js"></script>
 <script>
     angular.module('zfpxMod',[]);
-    angular.module('zfpxMod').controller('zfpxCtrl',function($timeout){
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$timeout){
+        console.log('zfpx');
+        $scope.name = 'zfpx';
         $timeout.zf = 'zf';
     });
     angular.module('zfpxMod').controller('zfpxCtrl2',function($timeout){

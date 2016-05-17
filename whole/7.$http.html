@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body class="container" ng-controller="zfpxCtrl">
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="book in books">
+        {{book.name}}
+    </li>
+</ul>
+</body>
+<script src="angular.min.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$http) {
+        $http({
+            url:'http://localhost:9090/books',
+            method:'GET',
+        }).then(function(data){
+            console.log(data);
+            $scope.books = data.data;
+        });
+    })
+</script>
+</html>
