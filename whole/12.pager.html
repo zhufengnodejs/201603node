@@ -20,7 +20,11 @@
                 </tr>
                 <tr>
                     <td>过滤条件</td>
-                    <td><input type="text" ng-model="search"></td>
+                    <td>
+                        按名称过滤:<input type="text" ng-model="search.name"><br/>
+                        按年龄过滤:<input type="text" ng-model="search.age"><br/>
+                        过滤有字段:<input type="text" ng-model="search.$">
+                    </td>
                 </tr>
                 <tr>
                     <td>排序字段</td>
@@ -44,7 +48,7 @@
                     <td>姓名</td>
                     <td>年龄</td>
                 </tr>
-                <tr ng-repeat="user in users">
+                <tr ng-repeat="user in users|filter:search">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.age}}</td>
