@@ -5,11 +5,12 @@ var books = [{id:1,name:'javascript'},{id:2,name:'node.js'}];
 http.createServer(function(req,res){
    var urlObj = url.parse(req.url,true);
    var pathname = urlObj.pathname;
-   if(pathname == '/books'){
-       res.setHeader('Access-Control-Allow-Origin','http://localhost:63342');
+   if(pathname == '/jsonp'){
+      // res.setHeader('Access-Control-Allow-Origin','http://localhost:63342');
       /* res.statusCode = 404;
        res.end();*/
-        res.end(JSON.stringify(books));
+       var method = urlObj.query.xxx;
+       res.end(method+'('+JSON.stringify(books)+')');
    }else{
        res.end('404');
    }

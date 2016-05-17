@@ -16,16 +16,16 @@
 <script>
     angular.module('zfpxMod',[]);
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$http) {
-        $http({
-            url:'http://localhost:9090/books',
-            method:'GET',
-        }).success(function(data){
+        $http.jsonp('http://localhost:9090/jsonp?callback=JSON_CALLBACK').success(function(data){
             $scope.books = data;
-            console.log(arguments);
-        }).error(function(){
-            console.log(arguments);
-        })
+        });
 
+                /*.success(function(data){
+                    $scope.books = data;
+                    console.log(arguments);
+                }).error(function(){
+            console.log(arguments);
+        })*/
                /* .then(function(data){
                     console.log(data);
                     $scope.books = data.data;
