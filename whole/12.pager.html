@@ -48,7 +48,7 @@
                     <td>姓名</td>
                     <td>年龄</td>
                 </tr>
-                <tr ng-repeat="user in users|filter:search|orderBy:or">
+                <tr ng-repeat="user in users|filter:search|orderBy:or|pager:pageNumber:pageSize">
                     <td>{{user.id}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.age}}</td>
@@ -61,6 +61,12 @@
 <script src="angular.min.js"></script>
 <script>
     angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').filter('pager',function(){
+        return function(input,pageNum,pageSize){
+            console.log(arguments);
+            return input.slice((pageNum-1)*pageSize,pageNum*pageSize);
+        }
+    });
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
         $scope.users = [
             {id:1,name:'1',age:4},
