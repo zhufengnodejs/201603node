@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        .act{
+            color:red;
+            background-color: red;
+        }
+    </style>
 </head>
 <body ng-controller="zfpxCtrl">
 <div class="container">
     <ul class="nav nav-tabs">
-        <li ng-click="selectedMenu='Home'" role="presentation" ng-class="{active:'Home'==selectedMenu}"><a href="#">Home</a></li>
+        <li ng-click="selectedMenu='Home'" role="presentation" ng-class="{act:'Home'==selectedMenu}"><a href="#">Home</a></li>
         <li ng-click="selectedMenu='Profile'" role="presentation" ng-class="{active:'Profile'==selectedMenu}"><a href="#">Profile</a></li>
         <li ng-click="selectedMenu='Messages'" role="presentation" ng-class="{active:'Messages'==selectedMenu}"><a href="#">Messages</a></li>
     </ul>
