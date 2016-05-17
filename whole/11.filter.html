@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body class="container" ng-controller="zfpxCtrl">
+ {{num|currency}}<br/>
+ {{"123.123"|number:2}}<br/>
+ {{"123.123"|number:1|currency}}<br/>
+ {{1288323623006|date:'MM-dd-yyyy hh:mm:ss Z'}}<br/>
+
+<pre>{{{name:'zfpx',age:7}|json}}</pre>
+<ul>
+    <li ng-repeat="book in books | limitTo:3|orderBy:'-name'">{{book}}</li>
+</ul>
+{{'ABCD'|lowercase}}
+{{'abcd'|uppercase}}
+</body>
+<script src="angular.min.js"></script>
+<script>
+    angular.module('zfpxMod', []);
+    angular.module('zfpxMod').controller('zfpxCtrl', function ($scope) {
+        $scope.num = "123.123";
+        $scope.books = [
+            {id:1,age:3,name:'a'},{id:2,age:2,name:'b'},{id:3,age:1,name:'c'}
+        ]
+    })
+</script>
+</html>

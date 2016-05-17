@@ -15,11 +15,20 @@
 <script src="angular.min.js"></script>
 <script>
     angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').factory('bookService',function(){
+        return {
+            query:function(){
+
+            }
+        }
+    });
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$http) {
         $http({
             url:'http://localhost:9090/books',
             method:'GET',
-        }).success(function(data){
+        })
+
+                .success(function(data){
             $scope.books = data;
             console.log(arguments);
         }).error(function(){

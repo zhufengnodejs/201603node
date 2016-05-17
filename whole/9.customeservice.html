@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body class="container" ng-controller="zfpxCtrl">
+
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="book in books">
+        <span ng-bind="book.name"></span>
+    </li>
+</ul>
+Number:{{number}}
+</body>
+<script src="angular.min.js"></script>
+<script>
+    angular.module('zfpxMod', []);
+    angular.module('zfpxMod').factory('bookService', function ($http) {
+        return {
+            query: function () {
+                return $http.get('http://localhost:9090/books')
+            }
+        }
+    });
+    angular.module('zfpxMod').factory('numberService', function ($q) {
+        //会生成一个延迟任务
+        var defer = $q.defer();
+        var number;
+        setTimeout(function () {
+            number = 10*Math.random();
+            if(number>5){
+                //成功时可以调用resolve方法
+                defer.resolve(number);
+            }else{
+                //失败时调用reject方法
+                defer.reject(new Error('promise error'));
+            }
+        }, 3000);
+        //返回一个承诺给调用方
+        return defer.promise;
+    });
+    angular.module('zfpxMod').controller('zfpxCtrl', function ($scope, bookService,numberService) {
+         numberService.then(function(data){
+             console.log(data);
+             $scope.number = data;
+        }).catch(function(reason){
+             console.error(reason);
+         });
+        /**
+         * then方法中的data.data存放着服务器端的响应数据
+         * success方法中的data放着服务器端的响应数据
+         */
+        bookService.query().then(function (data) {
+            $scope.books = data.data;
+        })
+    })
+</script>
+</html>
