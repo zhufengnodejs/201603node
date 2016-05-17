@@ -40,6 +40,8 @@
             </table>
         </div>
     </div>
+    {{pages}}
+    {{totalPage}}
     <div class="row">
         <div class="col-md-12">
             <table class="table table-border">
@@ -54,6 +56,7 @@
                     <td>{{user.age}}</td>
                 </tr>
             </table>
+
             <nav>
                 <ul class="pagination">
                     <li ng-if="pageNumber>1" ng-click="go(pageNumber -1)">
@@ -61,7 +64,7 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li ng-class="{active:pageNumber == page}"  ng-click="go(page)" ng-repeat="page in pages"><a href="#">{{page}}</a></li>
+                    <li ng-class="{active:pageNumber == page}"  ng-click="go(page)" ng-repeat="page in pages()"><a href="#">{{page}}</a></li>
                     <li ng-if="pageNumber<totalPage"  ng-click="go(pageNumber +1)">
                         <a href="#" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
@@ -83,7 +86,7 @@
             return input.slice((pageNum-1)*pageSize,pageNum*pageSize);
         }
     });
-    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$filter){
         $scope.go = function(page){
             $scope.pageNumber = page;
         }
@@ -95,13 +98,34 @@
             {id:3,name:'3',age:2},
             {id:4,name:'4',age:1}
         ]
-        $scope.pages = [];//存放一共有多少页
-        //先算出总页数
-        $scope.totalPage = Math.ceil($scope.users.length/$scope.pageSize);
+        //监听模型上 $scope的pageSize属性的变化
+        //变化之后执行对应的回调
 
-        for(var i=0;i<$scope.totalPage;i++){
-            $scope.pages.push(i+1);
+        $scope.pages = function(){
+            var _pages = [];//存放一共有多少页
+            //先算出总页数
+            //$filter('pager')
+            var fitleredUser = $filter('filter')($scope.users,$scope.search);
+            console.log(fitleredUser);
+            $scope.totalPage = Math.ceil(fitleredUser
+.length/$scope.pageSize);
+
+            for(var i=0;i<$scope.totalPage;i++){
+                _pages.push(i+1);
+            }
+            return _pages;
         }
+       /* $scope.$watch('pageSize',function(){
+            $scope.pages = [];//存放一共有多少页
+            //先算出总页数
+            $scope.totalPage = Math.ceil($scope.users.length/$scope.pageSize);
+
+            for(var i=0;i<$scope.totalPage;i++){
+                $scope.pages.push(i+1);
+            }
+        });*/
+
+
     });
 </script>
 </html>
