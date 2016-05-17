@@ -9,20 +9,25 @@
         <span ng-controller="zfpxCtrl">{{name}}</span>
     </div>
     <div>
-        <span ng-controller="zfpxCtrl2">{{name}}</span>
+        <span ng-controller="zfpxCtrl">{{name2}}</span>
     </div>
 </body>
 <script src="angular.min.js"></script>
 <script>
-    angular.module('zfpxMod',['zfpxMod2']);
+    angular.module('zfpxMod',['zfpxMod2','zfpxMod3']);
     //定义控制器的时候会送一个 $scope
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
-        $scope.name = 'zfpx';
+        $scope.name = 'zfpx1';
     });
     angular.module('zfpxMod2',[]);
     //定义控制器的时候会送一个 $scope
-    angular.module('zfpxMod2').controller('zfpxCtrl2',function($scope){
-        $scope.name = 'zfpx2';
+    angular.module('zfpxMod2').controller('zfpxCtrl',function($scope){
+        $scope.name2 = 'zfpx2';
+    });
+    angular.module('zfpxMod3',[]);
+    //定义控制器的时候会送一个 $scope
+    angular.module('zfpxMod3').controller('zfpxCtrl',function($scope){
+        $scope.name = 'zfpx3';
     });
 </script>
 </html>
