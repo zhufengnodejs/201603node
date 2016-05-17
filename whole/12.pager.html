@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container">
+<div class="container" ng-controller="zfpxCtrl">
     <div class="row">
         <div class="col-md-8">
             <table class="table table-border">
@@ -36,14 +36,29 @@
             </table>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-border">
+                <tr>
+                    <td>ID</td>
+                    <td>姓名</td>
+                    <td>年龄</td>
+                </tr>
+                <tr ng-repeat="user in users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.age}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 <script src="angular.min.js"></script>
 <script>
     angular.module('zfpxMod',[]);
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
-        $scope.books = [
+        $scope.users = [
             {id:1,name:'1',age:4},
             {id:2,name:'2',age:3},
             {id:3,name:'3',age:2},
