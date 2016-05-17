@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div >
+        <span ng-controller="zfpxCtrl">{{name}}</span>
+    </div>
+    <div>
+        <span ng-controller="zfpxCtrl2">{{name}}</span>
+    </div>
+</body>
+<script src="angular.min.js"></script>
+<script>
+    angular.module('zfpxMod',['zfpxMod2']);
+    //定义控制器的时候会送一个 $scope
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+        $scope.name = 'zfpx';
+    });
+    angular.module('zfpxMod2',[]);
+    //定义控制器的时候会送一个 $scope
+    angular.module('zfpxMod2').controller('zfpxCtrl2',function($scope){
+        $scope.name = 'zfpx2';
+    });
+</script>
+</html>
