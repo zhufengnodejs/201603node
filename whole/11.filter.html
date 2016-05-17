@@ -13,14 +13,22 @@
 
 <pre>{{{name:'zfpx',age:7}|json}}</pre>
 <ul>
-    <li ng-repeat="book in books | limitTo:3|orderBy:'-name'">{{book}}</li>
+    <li ng-repeat="book in books | limitTo:3|orderBy:'name':true">{{book}}</li>
 </ul>
 {{'ABCD'|lowercase}}
 {{'abcd'|uppercase}}
+{{'great'|upperFirst:2:2}}
 </body>
 <script src="angular.min.js"></script>
 <script>
     angular.module('zfpxMod', []);
+    angular.module('zfpxMod').filter('upperFirst',function(){
+        return function(input,pre,after){
+            return input.slice(0,pre).toUpperCase()
+            +input.slice(pre,-1*after)
+            +input.slice(-1*after).toUpperCase();
+        }
+    });
     angular.module('zfpxMod').controller('zfpxCtrl', function ($scope) {
         $scope.num = "123.123";
         $scope.books = [

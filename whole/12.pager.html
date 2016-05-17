@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-border">
+                <tr>
+                    <td>当前页码</td>
+                    <td><input type="text" ng-model="pageNumber"></td>
+                </tr>
+                <tr>
+                    <td>每页条数</td>
+                    <td><input type="text" ng-model="pageSize"></td>
+                </tr>
+                <tr>
+                    <td>过滤条件</td>
+                    <td><input type="text" ng-model="search"></td>
+                </tr>
+                <tr>
+                    <td>排序字段</td>
+                    <td>
+                        <select ng-model="or">
+                            <option value="name">姓名升序</option>
+                            <option value="-name">姓名降序</option>
+                            <option value="age">年龄升序</option>
+                            <option value="-age">年龄降序</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="angular.min.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+        $scope.books = [
+            {id:1,name:'1',age:4},
+            {id:2,name:'2',age:3},
+            {id:3,name:'3',age:2},
+            {id:4,name:'4',age:1}
+        ]
+    });
+</script>
+</html>
