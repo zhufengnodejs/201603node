@@ -7,9 +7,19 @@
 </head>
 <body ng-controller="contactCtrl">
 <div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="alert alert-success" ng-show="msg">{{msg}}</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <a ng-click="addContactForm= !addContactForm" class="btn btn-default">{{addContactForm?'隐藏':'添加'}}</a>
 
-    <h3>添加联系人</h3>
-    <form  ng-submit="addContact()">
+        </div>
+    </div>
+    <form  ng-submit="addContact()" ng-show="addContactForm">
+        <h3>添加联系人</h3>
         <div class="form-group">
             <label for="username">姓名</label>
             <input ng-model="contact.username" class="form-control" type="text" name="username" id="username">
@@ -39,7 +49,7 @@
                 <td>{{contact.email}}</td>
                 <td>
                     <a class="btn btn-warning" href="">编辑</a>
-                    <a class="btn btn-danger" href="">删除</a>
+                    <a class="btn btn-danger"  ng-click="contacts.$remove(contact)">删除</a>
                 </td>
             </tr>
         </tbody>
