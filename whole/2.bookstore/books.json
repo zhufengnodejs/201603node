@@ -1,0 +1,16 @@
+[
+  {
+    "id":1,
+    "name":"Javascript",
+    "description":"Javascript is good",
+    "price":9.99,
+    "image":"javascript.jpg"
+  },
+  {
+    "id":2,
+    "name":"node.js",
+    "description":"node.js is good",
+    "price":8.88,
+    "image":"nodejs.png"
+  }
+]

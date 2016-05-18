@@ -1,0 +1,13 @@
+<div class="row">
+    <a href="#/list">返回列表页</a>
+    <br/>
+    <div class="col-xs-4">
+        <img class="img-responsive"  ng-src="{{book.image}}" alt="{{book.name}}">
+    </div>
+    <div class="col-md-8">
+        <h3>{{book.name}}</h3>
+        <p>{{book.description}}</p>
+        <h4>{{book.price|currency}}</h4>
+        <button class="btn btn-success">购买</button>
+    </div>
+</div>
