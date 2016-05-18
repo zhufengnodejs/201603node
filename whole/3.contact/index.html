@@ -8,19 +8,18 @@
 <body ng-controller="contactCtrl">
 <div class="container">
 
+    <h3>添加联系人</h3>
     <form  ng-submit="addContact()">
-        <h3>添加联系人</h3>
-
         <div class="form-group">
             <label for="username">姓名</label>
-            <input class="form-control" type="text" name="username" id="username">
+            <input ng-model="contact.username" class="form-control" type="text" name="username" id="username">
         </div>
         <div class="form-group">
             <label for="email">邮箱</label>
-            <input class="form-control" type="text" name="email" id="email">
+            <input ng-model="contact.email" class="form-control" type="text" name="email" id="email">
         </div>
         <div class="form-group">
-            <input type="button" class="btn btn-default" value="增加">
+            <input type="submit" class="btn btn-default" value="增加">
         </div>
     </form>
 
@@ -36,7 +35,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="contact in contacts">
-                <td>{{contact.name}}</td>
+                <td>{{contact.username}}</td>
                 <td>{{contact.email}}</td>
                 <td>
                     <a class="btn btn-warning" href="">编辑</a>
