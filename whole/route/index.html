@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-view></div>
+</body>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script>
+    // 1 创建模块  3 启动
+    angular.module('zfpxMod',['ngRoute']);
+    //2 执行配置 对路由进行配置,配置当路径为XX的时候，显示YY的内容
+    angular.module('zfpxMod').config(function($routeProvider){
+        $routeProvider.when('/index',{
+            template:'<h1>index</h1>'
+        }).when('/user',{
+            template:'<h1>user</h1>'
+        }).otherwise({
+            redirectTo:'/index'
+        });
+    });
+</script>
+</html>
