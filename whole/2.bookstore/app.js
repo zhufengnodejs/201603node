@@ -4,7 +4,7 @@ angular.module('zfpxMod').config(function ($routeProvider) {
     $routeProvider.when('/list', {
         templateUrl: 'booklist.html',
         controller: 'bookCtrl'
-    }).when('/detail/:id', {
+    }).when('/detail/:id/:name', {
         templateUrl: 'detail.html',
         controller: 'DetailCtrl'
     }).otherwise({
@@ -18,10 +18,10 @@ angular.module('zfpxMod').controller('bookCtrl',function($scope,$http){
 });
 
 angular.module('zfpxMod').controller('DetailCtrl',function($scope,$http,$routeParams){
+    console.log($routeParams);
     $http.get('books.json').then(function(response){
        $scope.book =  response.data.filter(function(book){
             return book.id == $routeParams.id;
         })[0];
-
     });
 });
