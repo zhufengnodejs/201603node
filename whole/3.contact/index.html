@@ -12,9 +12,10 @@
             <div class="alert alert-success" ng-show="msg">{{msg}}</div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-xs-12">
-            <a ng-click="addContactForm= !addContactForm" class="btn btn-default">{{addContactForm?'隐藏':'添加'}}</a>
+            <a ng-click="add()" class="btn btn-default">{{addContactForm?'隐藏':'添加'}}</a>
 
         </div>
     </div>
@@ -35,25 +36,38 @@
 
 
     <h3>你的联系人有位</h3>
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>姓名</th>
-                <th>邮箱</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="contact in contacts">
-                <td>{{contact.username}}</td>
-                <td>{{contact.email}}</td>
-                <td>
-                    <a class="btn btn-warning" href="">编辑</a>
-                    <a class="btn btn-danger"  ng-click="contacts.$remove(contact)">删除</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-xs-8">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>邮箱</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-click="select(item)" ng-repeat="item in contacts">
+                    <td>{{item.username}}</td>
+                    <td>{{item.email}}</td>
+                    <td>
+                        <a class="btn btn-warning" href="">编辑</a>
+                        <a class="btn btn-danger"  ng-click="contacts.$remove(item)">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4>姓名:{{contact.username}}</h4>
+                        <h4>邮箱: {{contact.email}}</h4>
+                    </div>
+                </div>
+        </div>
+    </div>
+
 </div>
 
 

@@ -5,6 +5,13 @@ angular.module('zfpxMod').controller('contactCtrl',function($scope,$firebaseArra
     $scope.contacts = contactBase;
     $scope.addContactForm = false;
     $scope.contact = {};
+    $scope.add = function(){
+        $scope.contact = {};
+        $scope.addContactForm= !$scope.addContactForm
+    }
+    $scope.select = function(contact){
+        $scope.contact = contact;
+    }
     $scope.addContact = function(){
         contactBase.$add($scope.contact).then(function(ref){
             var id = ref.key();
