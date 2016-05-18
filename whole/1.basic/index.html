@@ -8,8 +8,8 @@
 <body>
   <div class="container">
       <ul class="nav nav-tabs">
-          <li role="presentation" class="active"><a href="#/">首页</a></li>
-          <li role="presentation"><a href="#/contact">联系我们</a></li>
+          <li ng-click="current = 'main'" role="presentation" ng-class="{active:current=='main'}"><a href="#/main">首页</a></li>
+          <li ng-click="current = 'contact'" ng-class="{active:current=='contact'}" role="presentation"><a href="#/contact">联系我们</a></li>
       </ul>
 
       <div>

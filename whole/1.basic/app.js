@@ -16,3 +16,9 @@ angular.module('zfpxMod').controller('MainCtrl',function($scope,$http){
         $scope.services = response.data;
     });
 });
+
+angular.module('zfpxMod').controller('ContactCtrl',function($scope,$http){
+    $http.get('locations.json').then(function(response){
+        $scope.locations = response.data;
+    });
+});
