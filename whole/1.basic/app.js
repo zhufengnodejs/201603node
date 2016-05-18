@@ -11,3 +11,8 @@ angular.module('zfpxMod').config(function($routeProvider){
         redirectTo:'/main'
     });
 });
+angular.module('zfpxMod').controller('MainCtrl',function($scope,$http){
+    $http.get('services.json').then(function(response){
+        $scope.services = response.data;
+    });
+});
