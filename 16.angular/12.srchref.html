@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body  ng-controller="zfpxCtrl">
+<a ng-href="{{href}}" ng-bind="text"></a><br/>
+<img ng-src="{{img}}" alt="">
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+angular.module('zfpxMod',[]).controller('zfpxCtrl',function($scope,$timeout){
+    $timeout(function(){
+        $scope.ref = 'http://www.baidu.com';
+        $scope.href= $scope.ref;
+        $scope.text = '百度';
+        $scope.img = 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png';
+    },3000);
+
+});
+</script>
+</html>

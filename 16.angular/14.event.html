@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border:1px solid red;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="ParentCtrl">
+       {{counter}}
+        <div ng-controller="ChildCtrl">
+            {{counter}}
+            <input type="button" ng-click="emit()" value="向上冒泡发射事件">
+            <input type="button" ng-click="broadcast()" value="向上广播事件">
+            <div ng-controller="GrandSonCtrl">
+                {{counter}}
+            </div>
+        </div>
+    </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    function Counter($scope){
+        $scope.counter = 0;
+        $scope.$on('add',function(event,number){
+            $scope.counter = $scope.counter+number;
+        });
+        $scope.emit = function(){
+            //向自己和上级作用域发射事件
+            $scope.$emit('add',Math.ceil(Math.random()*5));
+        }
+        $scope.broadcast = function(){
+            //向自己和下级作用域发射事件
+            $scope.$broadcast('add',Math.ceil(Math.random()*5));
+        }
+    };
+    angular.module('zfpxMod').controller('ParentCtrl',Counter);
+    angular.module('zfpxMod').controller('ChildCtrl',Counter);
+    angular.module('zfpxMod').controller('GrandSonCtrl',Counter);
+</script>
+</html>

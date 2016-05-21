@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border:1px solid red;
+            padding: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="zfpxCtrl">
+        <input id="username" type="text" ng-model="username">
+        {{username}}
+    </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$timeout){
+       /* $scope.name = '珠峰培训';
+        $timeout(function(){
+            $scope.name = '222';
+            console.log($scope);
+        },3000);
+        //观察scope的name属性，变化之后执行回调
+        $scope.$watch('name',function(newVal,oldVal,scope){
+            console.log(newVal,oldVal);
+        });
+        console.log($scope);*/
+
+        setTimeout(function(){
+            //当模型变化的时候刷新视图用的
+            $scope.$apply(function(){
+              /*  document.querySelector('#username').value = 'newVal';*/
+                $scope.username = 'username';
+            });
+        },3000);
+    });
+</script>
+</html>
