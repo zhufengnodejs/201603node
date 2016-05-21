@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body ng-controller="ZfpxCtrl">
+  <table class="table table-responsive">
+      <tr>
+          <td>商品</td>
+          <td>单价</td>
+          <td>数量</td>
+          <td>小计</td>
+          <td>操作</td>
+      </tr>
+      <tr ng-repeat="item in items">
+          <td>{{item.name}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.amount}}</td>
+          <td>{{item.amount*item.price}}</td>
+          <td><input class="btn btn-danger" value="删除" type="button" ng-click="delete($index)"></td>
+      </tr>
+  </table>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('ZfpxCtrl',function($scope){
+        $scope.items = [
+            {id:1,name:'小米MAX',amount:1,price:1999},
+            {id:2,name:'锤子T2',amount:1,price:1999},
+            {id:3,name:'iphone7',amount:1,price:999}
+        ]
+        $scope.delete = function(index){
+            $scope.items.splice(index,1);
+        }
+    });
+</script>
+</html>

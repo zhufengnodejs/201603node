@@ -12,13 +12,13 @@
 </head>
 <body>
     <div ng-controller="ParentCtrl">
-       {{counter}}
+       <span ng-bind="counter"></span>
         <div ng-controller="ChildCtrl">
-            {{counter}}
+            <span ng-bind="counter"></span>
             <input type="button" ng-click="emit()" value="向上冒泡发射事件">
             <input type="button" ng-click="broadcast()" value="向上广播事件">
             <div ng-controller="GrandSonCtrl">
-                {{counter}}
+                <span ng-bind="counter"></span>
             </div>
         </div>
     </div>
