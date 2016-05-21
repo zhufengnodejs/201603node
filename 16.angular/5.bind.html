@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+  <div ng-controller="zfpxCtrl">
+     <span ng-bind="name"></span>
+     <span ng-bind-template="{{name}}|{{age}}"></span>
+      <span ng-non-bindable>{{name}}|{{age}}</span>
+  </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+ angular.module('zfpxMod',[]).controller('zfpxCtrl',function($scope){
+     $scope.name="zfpx";
+     $scope.age="7";
+ });
+</script>
+</html>
