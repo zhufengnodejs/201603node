@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    网站信息
+    <div ng-controller="zfpxCtrl">
+      {{name}}
+    </div>
+
+    个人信息
+    <div ng-controller="zfpxCtrl2">
+      {{name}}
+    </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    //一切从模块开始 ,引入angular.js文件之后会在window下挂一个
+    //全局变量叫angular module表示定义一个模块
+    //指定模块的名称和此模块依赖的其它模块
+    angular.module('zfpxMod',[]);
+    //一个参数表示取出一个模块
+    //controller定义一个控制器 第一个参数表示控制器的名称 第二个参数表示控制器的定义
+    //当实例化一个控制器的时候，会赠送一个$scope对象
+    //
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+        //在控制器函数内可以给$scope赋值
+        //$scope默认是个空对象，没有属性，等待你的填充
+        $scope.name = '珠峰培训';
+    });
+    angular.module('zfpxMod').controller('zfpxCtrl2',function($scope,$http){
+        //只要形参里面声明变量，没有自己创建，这叫依赖注入
+        $scope.name = '张三';
+    });
+</script>
+</html>

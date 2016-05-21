@@ -6,6 +6,7 @@ angular.module('zfpxMod').controller('contactCtrl',function($scope,$firebaseArra
     //是一个对象数组 然后可以在页面里迭代此数组
     //firebaseArray 代表我们的数据库集合
     var firebaseArray = $firebaseArray(base);
+    console.log(Object.prototype.toString.call(firebaseArray));
     $scope.contacts = firebaseArray;
     //这是是否时数增加表单的标识位 true 显示 false 隐藏
     $scope.addContactForm = false;
