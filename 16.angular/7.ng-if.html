@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+
+  <div ng-controller="zfpxCtrl">
+    <button ng-click="toggle()">点我</button>
+    <div ng-show="show">
+        你好
+    </div>
+  </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+ angular.module('zfpxMod',[]).controller('zfpxCtrl',function($scope,$sce){
+     $scope.show = false;
+     $scope.toggle = function(){
+         $scope.show = !$scope.show;
+     }
+ });
+</script>
+</html>

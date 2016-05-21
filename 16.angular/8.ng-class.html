@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body class="container">
+  <div ng-controller="zfpxCtrl">
+      <form novalidate="novalidate" name="userform">
+          <div class="form-group" ng-class="{'has-error':userform.username.$invalid&&userform.username.$dirty,'has-success':userform.username.$valid&&userform.username.$dirty}">
+              <label for="username">用户名</label>
+              <input class="form-control" type="text" id="username" ng-pattern="/^\d+$/" ng-required="true" ng-minlength="6" ng-maxlength="12" name="username" ng-model="user.username">
+          </div>
+          <div class="help-block" ng-if="userform.username.$error.minlength">
+              不能少于6位
+          </div>
+          <div class="help-block" ng-if="userform.username.$error.maxlength">
+              不能大于12位
+          </div>
+          <div class="help-block" ng-if="userform.username.$error.pattern">
+              不符合正则
+          </div>
+          <div class="form-group" ng-class="{'has-error':userform.email.$invalid&&userform.email.$dirty,'has-success':userform.email.$valid&&userform.email.$dirty}">
+              <label for="email">邮箱</label>
+              <input class="form-control" type="email" id="email"  ng-required="true"  name="email" ng-model="user.email">
+          </div>
+          <div class="help-block" ng-if="userform.email.$error.email">
+              邮箱的格式非法
+          </div>
+          <div class="form-group" >
+              <input ng-disabled="userform.$invalid" class="btn btn-default" type="submit" value="注册">
+          </div>
+      </form>
+      <pre>{{user | json}}</pre>
+      <pre>{{userform | json}}</pre>
+  </div>
+
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+ angular.module('zfpxMod',[]).controller('zfpxCtrl',function($scope,$sce){
+
+ });
+</script>
+</html>
