@@ -14,3 +14,9 @@ function say(c){
 }
 say(3);
 say(3);
+
+var obj = {};
+obj.ctrl = 'ctr1';
+obj = {};
+obj.ctrl2 = 'ctrl2';
+console.log(obj.ctrl);
