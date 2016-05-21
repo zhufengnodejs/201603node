@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+   <div ng-controller="zfpxCtrl">
+      {{name}}
+   </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    /**
+     * 1. 监听 input的change事件，当input value值发生改变的时候取到最新的值
+     * 2. 把最的值赋给scope对应的属性
+     *
+     * 3、监听 scope的属性，当它发生改变的时候，修改input的value
+     */
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,$timeout){
+        $scope.name = 'zfpx';
+        setTimeout(function(){
+            $scope.name = $scope.name+'1';
+        },2000);
+        $timeout(function(){
+            $scope.name = $scope.name+'2';
+        },4000);
+    })
+</script>
+</html>

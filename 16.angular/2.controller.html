@@ -13,7 +13,8 @@
    <div ng-controller="ParentCtrl">
        {{name}} {{age}}
        <div ng-controller="ChildCtrl">
-           {{name}} {{age}}
+           {{name}}
+           <input type="text" ng-model="name">
            <div ng-controller="GrandSonCtrl">
                {{name}} {{age}}
            </div>
@@ -41,9 +42,9 @@
         console.log(arguments);
         //在控制器函数内可以给$scope赋值
         //$scope默认是个空对象，没有属性，等待你的填充
-        $scope.name = '儿子';
+        //$scope.name = '儿子';
         //$rootScope叫根作用域对象
-        $rootScope.age = 8;
+        //$rootScope.age = 8;
     });
     angular.module('zfpxMod').controller('GrandSonCtrl',function($scope){
         //在控制器函数内可以给$scope赋值
