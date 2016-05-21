@@ -15,13 +15,16 @@
      <span ng-bind="name"></span>
      <span ng-bind-template="{{name}}|{{age}}"></span>
       <span ng-non-bindable>{{name}}|{{age}}</span>
+      <br/>
+      <span ng-bind-html="html"></span>
   </div>
 </body>
 <script src="bower_components/angular/angular.js"></script>
 <script>
- angular.module('zfpxMod',[]).controller('zfpxCtrl',function($scope){
+ angular.module('zfpxMod',[]).controller('zfpxCtrl',function($scope,$sce){
      $scope.name="zfpx";
      $scope.age="7";
+     $scope.html = $sce.trustAsHtml('<h1>hello</h1>');
  });
 </script>
 </html>
