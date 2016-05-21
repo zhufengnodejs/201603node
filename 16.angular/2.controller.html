@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+   <div ng-controller="ParentCtrl">
+       {{name}} {{age}}
+       <div ng-controller="ChildCtrl">
+           {{name}} {{age}}
+           <div ng-controller="GrandSonCtrl">
+               {{name}} {{age}}
+           </div>
+       </div>
+   </div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    //一切从模块开始 ,引入angular.js文件之后会在window下挂一个
+    //全局变量叫angular module表示定义一个模块
+    //指定模块的名称和此模块依赖的其它模块
+    angular.module('zfpxMod',[]);
+    //一个参数表示取出一个模块
+    //controller定义一个控制器 第一个参数表示控制器的名称 第二个参数表示控制器的定义
+    //当实例化一个控制器的时候，会赠送一个$scope对象
+    //
+    angular.module('zfpxMod').controller('ParentCtrl',function($scope){
+        //在控制器函数内可以给$scope赋值
+        //$scope默认是个空对象，没有属性，等待你的填充
+        $scope.name = '父亲';
+    });
+    angular.module('zfpxMod').controller('ChildCtrl',function($scope,$rootScope){
+        //$scope是唯一一个每个控制器都私有属性
+        //其它所有注入的对象都是公有的
+        console.log(arguments);
+        //在控制器函数内可以给$scope赋值
+        //$scope默认是个空对象，没有属性，等待你的填充
+        $scope.name = '儿子';
+        //$rootScope叫根作用域对象
+        $rootScope.age = 8;
+    });
+    angular.module('zfpxMod').controller('GrandSonCtrl',function($scope){
+        //在控制器函数内可以给$scope赋值
+        //$scope默认是个空对象，没有属性，等待你的填充
+        $scope.name = '孙子';
+    });
+</script>
+</html>
