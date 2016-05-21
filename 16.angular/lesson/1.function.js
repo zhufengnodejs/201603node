@@ -20,3 +20,13 @@ obj.ctrl = 'ctr1';
 obj = {};
 obj.ctrl2 = 'ctrl2';
 console.log(obj.ctrl);
+
+
+function a(){
+    function b(){
+        console.log(c);
+    }
+    b();
+}
+
+a();

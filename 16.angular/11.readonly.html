@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body  ng-controller="zfpxCtrl">
+用户名<input type="text" ng-readonly="read"><br/>
+
+性别
+<input name="gender" type="radio" value="男" ng-checked="boy">男
+<input name="gender" type="radio" value="女" ng-checked="girl">女
+<br/>
+爱好
+<input name="hobby" type="checkbox" value="篮球" ng-checked="basketball">篮球
+<input name="hobby" type="checkbox" value="足球" ng-checked="football">足球
+<br/>
+
+<input name="school" type="checkbox" value="high" ng-model="high">高中
+<input name="school"  type="checkbox" value="university"
+ng-model="university">大学
+{{high}} {{university}}
+<br/>
+<select multiple maxlength="4" name="" id="">
+    <option value="high" ng-selected="high">高中</option>
+    <option value="university" ng-selected="university">大学</option>
+</select>
+
+<select ng-model="grade" >
+    <option value="1">一年级</option>
+    <option value="2">二年级</option>
+    <option value="3">三年级</option>
+</select>
+{{grade}}
+<div ng-switch="grade">
+    <div ng-switch-when="1">
+        <div ng-include="'1.html'"></div>
+    </div>
+    <div ng-switch-when="2">
+        <div ng-include="'2.html'"></div>
+    </div>
+    <div ng-switch-when="3">
+        <div ng-include="'3.html'"></div>
+    </div>
+    <div ng-switch-default>我也不知道你是几年级</div>
+</div>
+
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+angular.module('zfpxMod',[]).controller('zfpxCtrl',function($scope,$timeout){
+    $timeout(function(){
+        $scope.read = true;
+        $scope.boy = true;
+        $scope.basketball = true;
+        $scope.football = true;
+    },3000);
+    $timeout(function(){
+        $scope.girl = true;
+    },5000);
+});
+</script>
+</html>
