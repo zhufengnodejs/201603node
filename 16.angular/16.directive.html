@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <hello>
+        <span>world</span>
+    </hello>
+
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').directive('hello',function(){
+        //指令定义是一个工厂函数，会返回一个指定属性对象
+        return {
+            //template指明一个HTML片段,可以用来替换指令的内容
+            template:'<h1 ng-transclude></h1>',
+            //如果replace = true，那么用HTML片段替换指令本身
+            replace:false,
+            //如果tranclude为true的话，则保留原来指令内嵌的元素
+            transclude:true
+        }
+    });
+</script>
+</html>
