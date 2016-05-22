@@ -10,6 +10,11 @@
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script>
+    /**
+     * 1.引入angular-route.js文件到html 中
+     * 2. 依赖ngRoute模块
+     * 3. 配置路由 config 配置路由
+     */
     angular.module('zfpxMod',['ngRoute']);
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
 
@@ -21,6 +26,8 @@
             template:'books'
         }).when('/book',{
             template:'book'
+        }).otherwise({
+            redirectTo:'/books'
         });
     });
 </script>
