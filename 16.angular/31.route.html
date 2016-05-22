@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-view></div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script>
+    angular.module('zfpxMod',['ngRoute']);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+
+    });
+    //注入路由配置服务
+    angular.module('zfpxMod').config(function($routeProvider){
+        //配置路由 当对不同的路径 ，对应不同的模板
+        $routeProvider.when('/books',{
+            template:'books'
+        }).when('/book',{
+            template:'book'
+        });
+    });
+</script>
+</html>
