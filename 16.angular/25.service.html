@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-controller="zfpxCtrl">
+<input type="text" ng-model="a">
+<select name="" id="" ng-model="op">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="text"ng-model="b">
+<button ng-click="calculate()">计算</button>
+<span>{{result}}</span>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    //定义一个可配置的服务
+    //先new一个服务的实例，然后调用它的$get方法得到一返回对象
+    angular.module('zfpxMod').provider('calculator',function(){
+        var prefix = '$';
+        this.setPrefix = function(p){
+            prefix = p;
+        }
+        this.$get = function(){
+            //返回的对象将会被注入到其它的控制器等中
+            return {
+                '+':function(a,b){
+                    return prefix+(a+b);
+                },
+                '-':function(a,b){
+                    return prefix+(a-b);
+                },
+                '*':function(a,b){
+                    return prefix+(a*b);
+                },
+                '/':function(a,b){
+                    return prefix+(a/b);
+                }
+            }
+        }
+    });
+    //配置函数,用来对应用进行配置
+    angular.module('zfpxMod').config(function(calculatorProvider){
+        calculatorProvider.setPrefix('@');
+    });
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,calculator){
+        $scope.calculate = function(){
+           //$scope.result = eval($scope.a+$scope.op+$scope.b);
+            $scope.result = calculator[$scope.op]($scope.a,$scope.b);
+        }
+    });
+</script>
+</html>

@@ -10,7 +10,7 @@
     <form name="userform">
         <div class="form-group" ng-class="{'has-error':userform.username.$invalid&&userform.username.$dirty,'has-success':userform.username.$valid&&userform.username.$dirty}">
             <label for="username">用户名</label>
-            <input unique name="username"  type="text" ng-minlength="6" id="username" class="form-control" ng-model="username">
+            <input unique   type="text" ng-minlength="6" id="username" class="form-control" ng-model="username">
         </div>
         <div class="help-block" ng-show="userform.username.$error.minlength">
             最小长度为6位
