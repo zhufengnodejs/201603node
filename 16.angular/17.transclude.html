@@ -7,13 +7,13 @@
 </head>
 <body>
 <div class="container">
-    <panel>
+    <panel title="panel1">
         主体1
     </panel>
-    <panel>
+    <panel title="panel2">
         主体2
     </panel>
-    <panel>
+    <panel title="panel3">
         主体3
     </panel>
 </div>
@@ -33,7 +33,20 @@
             replace:true,
             //如果tranclude为true的话，则保留原来指令内嵌的元素,这些内嵌的元素将会被插入到替换后的模板中具有ng-transclude指令的内部
             transclude:true,
-            restrict:'EAMC'
+            restrict:'E',
+            link:function(scope,element,attr){
+                console.log(attr);
+               /* element.on('click',function(){
+                    alert(element.attr('title'));
+                });*/
+                if(attr['title'] == 'panel1'){
+                    alert('panel1');
+                }else if(attr['title'] == 'panel2'){
+                    alert('panel2');
+                }else{
+                    alert('panel3');
+                }
+            }
         }
     });
 </script>

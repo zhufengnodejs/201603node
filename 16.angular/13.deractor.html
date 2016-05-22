@@ -13,7 +13,7 @@
 <body>
 <div class="container" ng-controller="zfpxCtrl">
    <div change-color="blue" name="zfpx">
-       hello
+        {{content}}
    </div>
 </div>
 
@@ -23,6 +23,7 @@
     angular.module('zfpxMod',[]);
     angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
         $scope.defaultColor='red';
+        $scope.content = 'good good study';
     });
     angular.module('zfpxMod').directive('changeColor',function(){
         //指令定义是一个工厂函数，会返回一个指定属性对象
@@ -46,6 +47,7 @@
                     element.css('color',scope.defaultColor);
                     //element.toggleClass('beRed');
                 });
+                //element.text(scope.content);
            }
         }
     });
