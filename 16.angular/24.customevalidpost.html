@@ -27,15 +27,16 @@
  angular.module('zfpxMod',[]);
  angular.module('zfpxMod').directive('unique',function($http){
      return {
+         //依赖ngModel 1 2 我们要设置合法
          require:'ngModel',
          link:function(scope,element,attr,ngModelCtrl){
              //监听input值的变化，当它变化后向后台发请求，根据返回的结果设置唯一性校验是否通过
              scope.$watch('username',function(){
                  // $.ajax({})
                  $http({
-                     url:'http://localhost:9090/check',
-                     method:'POST',
-                     data:{username:scope.username}
+                     url:'http://localhost:9090/check',//请求路径 url
+                     method:'POST',//请求方法
+                     data:{username:scope.username}// 请求体
                  }).success(function(data){
                     console.log(data);
                      if(data.msg == 'success'){
