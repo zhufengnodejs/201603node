@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .title{
+            width:100px;
+            height:40px;
+            background-color: green;
+        }
+        .content{
+            width:100px;
+            height:300px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body style="padding:150px">
+ <open title="标题">
+     正文
+ </open>
+</body >
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+
+    });
+    angular.module('zfpxMod').directive('open',function(){
+        return {
+            replace:true,//替换原有的指令
+            restrict:'E',//只能在元素上使用
+            templateUrl:'opener.html',//指定加载的HTML
+            scope:{
+                title:'@title'
+            },
+            transclude:true,
+            link:function(scope,element,attr){
+                scope.toggle = function(){
+                    scope.show = !scope.show;
+                }
+            }
+        }
+    });
+</script>
+</html>
