@@ -20,7 +20,7 @@
 <script>
     angular.module('zfpxMod',[]);
     //定义一个可配置的服务
-    //先new一个服务的实例，然后调用它的$get方法得到一返回对象
+    //先new一个服务的实例，然后调用它的$get方法得到一返回对象，注入到控制器中
     angular.module('zfpxMod').provider('calculator',function(){
         var prefix = '$';
         this.setPrefix = function(p){
@@ -44,7 +44,7 @@
             }
         }
     });
-    //配置函数,用来对应用进行配置
+    //配置函数,用来对应用进行配置，注册的服务名加上Provider后缀是需要被注入名称
     angular.module('zfpxMod').config(function(calculatorProvider){
         calculatorProvider.setPrefix('@');
     });
