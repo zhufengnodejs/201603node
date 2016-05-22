@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body style="padding:150px" ng-controller="zfpxCtrl">
+
+<girl gift="money,car,house"></girl>
+
+</body >
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+
+    });
+    //定义girl的组件式指令
+    angular.module('zfpxMod').directive('girl',function(){
+        return {
+            template:'<div class="jumbotron"><h1>{{receives}}</h1> </div>',
+            replace:true,//替换原来的指令本身
+            restrict:'E',
+            scope:true,
+            //可以为每个指令定义一个控制器,传入此指令自己的$scope
+            controller:function($scope){
+                $scope.receives = [];
+                this.receive = function(gift){
+                    $scope.receives.push(gift);
+                }
+            }
+        }
+    });
+    //定义girl的组件式指令
+    angular.module('zfpxMod').directive('gift',function(){
+        return {
+            restrict:'A',
+            //表明依赖的指令，指定了以后在link中第四个参数就是这个依赖指令的控制器
+            /**
+             * 没有前缀 同级找，找不到会报错
+             * ？前缀 同级找，找不到不报错，传递一个null到第四参数中
+             * ^ 前缀 先找同级，找不到找上级
+             * ?^前缀 先找同级，找不到找上级，如果找到顶级还找不到会传null进来
+             */
+            require:'girl',
+            link:function(scope,element,attrs,girlCtrl){
+                girlCtrl.receive(attrs['gift']);
+            }
+        }
+    });
+
+</script>
+</html>

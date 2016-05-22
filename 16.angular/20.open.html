@@ -12,7 +12,7 @@
         }
         .content{
             width:100px;
-            height:300px;
+            height:100px;
             background-color: orange;
         }
     </style>
@@ -34,9 +34,10 @@
             restrict:'E',//只能在元素上使用
             templateUrl:'opener.html',//指定加载的HTML
             scope:{
-                title:'@title'
+                title:'@title'//本指令独立scope上的title从属性上取值
             },
-            transclude:true,
+            transclude:true,//保留内嵌的元素
+            //链接函数 定义一个方法，可以模板中使用
             link:function(scope,element,attr){
                 scope.toggle = function(){
                     scope.show = !scope.show;
