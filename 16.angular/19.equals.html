@@ -7,8 +7,8 @@
 </head>
 <body>
 <div class="container" ng-controller="zfpxCtrl">
-    控制中的city:{{city}}<br/>
-大师兄:<zf-input city="{{city}}"></zf-input><br/>
+    控制中的city:{{city}}<input ng-model="city"><br/>
+大师兄:<zf-input city="city"></zf-input><br/>
 二师兄:<zf-input></zf-input><br/>
 小师妹:<zf-input></zf-input>
 </div>
@@ -29,7 +29,7 @@
           restrict:'E',
           //当scope为true的时候，会为这个指令派生一个私有空白的，并且与上级隔绝的scope
           scope:{
-              city:'@city'//独立scope的city属性从本元素的city属性上取字面量
+              city:'=city'//独立scope的city属性从本元素的city属性上取字面量
           },
           /*link:function(scope,element,attr){
               console.log(attr);
