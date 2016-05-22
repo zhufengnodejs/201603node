@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-controller="zfpxCtrl">
+{{number}}
+{{str}}
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').filter('upperFirst',function(){
+        //第一个参数是被过滤的值，后面的参数是是过滤器的参数
+        return function(input,pre,suffix){
+            return input.slice(0,pre).toUpperCase()+
+                    input.slice(pre,-suffix)+
+                    input.slice(-suffix).toUpperCase()
+        }
+    });
+    //过滤器的名称是 过滤器+Filter后缀
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope,currencyFilter,upperFirstFilter){
+        var num = 888.888;
+        $scope.number =currencyFilter(num,'$');
+        var str = 'abcde';
+        $scope.str =upperFirstFilter(str,1,2);
+    });
+
+</script>
+</html>
