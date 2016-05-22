@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .title{
+            width:100px;
+            height:40px;
+            background-color: green;
+        }
+        .content{
+            width:100px;
+            height:100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body style="padding:150px">
+<group>
+    <open title="标题1">
+        正文1
+    </open>
+    <open title="标题2">
+        正文2
+    </open>
+    <open title="标题3">
+        正文3
+    </open>
+</group>
+
+</body >
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+
+    });
+    angular.module('zfpxMod').directive('group',function(){
+        return {
+            controller:function(){
+                this.scopes = [];//控制器的实例有一个scopes的私有属性
+                this.add = function(scope){//用来往数组里添加scope
+                    this.scopes.push(scope);
+                }
+                this.open = function(scope){
+                    scope.show = !scope.show;//把自己当前指令的show取反
+                    this.scopes.forEach(function(item){//把其它指令中的show关掉
+                        if(item != scope)
+                            item.show = false;
+                    });
+
+                }
+            }
+        }
+    });
+
+    angular.module('zfpxMod').directive('open',function(){
+        return {
+            replace:true,//替换原有的指令
+            restrict:'E',//只能在元素上使用
+            templateUrl:'opener.html',//指定加载的HTML
+            scope:{
+                title:'@title'//本指令独立scope上的title从属性上取值
+            },
+            require:'^group',
+            transclude:true,//保留内嵌的元素
+            //链接函数 定义一个方法，可以模板中使用
+            link:function(scope,element,attr,groupCtrl){
+                groupCtrl.add(scope);//把自己的scope传递给父指令的私有属性
+                //当点击标题的时候，委托父指令的方法来处理
+                scope.toggle = function(){
+                    groupCtrl.open(scope);
+                }
+            }
+        }
+    });
+</script>
+</html>
