@@ -48,6 +48,7 @@
                 this.open = function(scope){
                     scope.show = !scope.show;//把自己当前指令的show取反
                     this.scopes.forEach(function(item){//把其它指令中的show关掉
+
                         if(item != scope)
                             item.show = false;
                     });
