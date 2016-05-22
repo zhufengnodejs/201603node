@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body ng-controller="zfpxCtrl">
+<input type="text" ng-model="a">
+<select name="" id="" ng-model="op">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type="text" ng-model="b">
+<button ng-click="calculate()">计算</button>
+<span>{{result}}</span>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod', []);
+    //提供一个构造函数，angular会帮你new这个构造函数的实例并注入控制器中
+    angular.module('zfpxMod').service('calculator', function () {
+        this.prefix = '$';
+        //返回的对象将会被注入到其它的控制器等中
+        this['+'] = function (a, b) {
+            return this.prefix + (a + b);
+        }
+        this['-'] = function (a, b) {
+            return this.prefix + (a - b);
+        }
+        this['*'] = function (a, b) {
+            return this.prefix + (a * b);
+        }
+        this['/'] = function (a, b) {
+            return this.prefix + (a / b);
+        }
+    });
+
+    angular.module('zfpxMod').controller('zfpxCtrl', function ($scope, calculator) {
+        $scope.calculate = function () {
+            //$scope.result = eval($scope.a+$scope.op+$scope.b);
+            $scope.result = calculator[$scope.op]($scope.a, $scope.b);
+        }
+    });
+</script>
+</html>
