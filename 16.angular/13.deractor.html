@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .beRed{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div class="container" ng-controller="zfpxCtrl">
+   <div change-color="blue" name="zfpx">
+       hello
+   </div>
+</div>
+
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('zfpxCtrl',function($scope){
+        $scope.defaultColor='red';
+    });
+    angular.module('zfpxMod').directive('changeColor',function(){
+        //指令定义是一个工厂函数，会返回一个指定属性对象
+        return {
+           restrict:'A',
+            /**
+             *
+             * @param scope 当前指令所属的作用域
+             * @param element 代表当前元素本身，是一个jquery对象
+             * @param attr 属性对象
+             */
+           link:function(scope,element,attr){
+                //可以指定样式
+                //element.css('color','red');
+                //绑定事件监听
+                element.on('mouseover',function(){
+                    element.css('color',attr['changeColor']);
+                    //element.toggleClass('beRed');
+                });
+                element.on('mouseout',function(){
+                    element.css('color',scope.defaultColor);
+                    //element.toggleClass('beRed');
+                });
+           }
+        }
+    });
+</script>
+</html>

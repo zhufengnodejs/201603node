@@ -28,11 +28,12 @@
         //指令定义是一个工厂函数，会返回一个指定属性对象
         return {
             //template指明一个HTML片段,可以用来替换指令的内容
-            template:'<div class="panel panel-warning"><div class="panel-heading"></div><div class="panel-body" ng-transclude></div></div>',
+            templateUrl:'panel.html',
             //如果replace = true，那么用HTML片段替换指令本身
             replace:true,
             //如果tranclude为true的话，则保留原来指令内嵌的元素,这些内嵌的元素将会被插入到替换后的模板中具有ng-transclude指令的内部
-            transclude:true
+            transclude:true,
+            restrict:'EAMC'
         }
     });
 </script>
