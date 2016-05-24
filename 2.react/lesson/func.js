@@ -1,3 +1,4 @@
+/*
 function first(a){
     console.log(a);
     function second(b){
@@ -5,4 +6,11 @@ function first(a){
     }
     second('b');
 }
-first('a');
+first('a');*/
+
+var defaultProps = {
+    name:'计数器',
+    age:6,
+    home:'beijing'
+};
+

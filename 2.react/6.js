@@ -3,7 +3,8 @@ var MessageBox = React.createClass({
     getDefaultProps:function(){
         console.log('1.getDefaultProps');
         return {
-            name:'提示'
+            name:'提示',
+            age:7
         }
     },
     //2.获取初始状态
@@ -26,7 +27,8 @@ var MessageBox = React.createClass({
         var style = {'border':'1px solid red'};
         return (
             <div style={style}>
-                <div >{this.props.name}: {this.state.count}</div>
+                <div >{this.props.name}:
+{this.state.count}</div>
                 <button onClick={this.handleClick}>更新组件</button>
                 <SubMessage count={this.state.count}/>
             </div>
@@ -40,12 +42,12 @@ var MessageBox = React.createClass({
     shouldComponentUpdate:function(nextProp,nextState){
         console.log('6.shouldComponentUpdate');
         //如果说改变之后的状态 count<10
-        if(nextState.count<5){
+        if(nextState.count>5){
             //返回true代表允许 执行更新
-            return true;
+            return false;
         }else{
             //返回false代表不允许更新
-            return false;
+            return true;
         }
     },
     //7.执行组件更新
@@ -75,6 +77,6 @@ var SubMessage = React.createClass({
 });
 
 ReactDOM.render(
-    <MessageBox name="计数器"/>,
+    <MessageBox name="计数器" age="8" home="beijing"/>,
     document.getElementById('app')
 );
