@@ -12,7 +12,7 @@ var Counter1 = React.createClass({
     mixins:[mix,mix2],
     render:function(){
         return(
-            <div>{this.props.name}:{this.state.count}</div>
+            <div>111{this.props.name}:{this.state.count}</div>
         )
     }
 });
@@ -20,7 +20,7 @@ var Counter2 = React.createClass({
     mixins:[mix],
     render:function(){
         return(
-            <div>{this.state.count}</div>
+            <div>22{this.state.count}</div>
         )
     }
 });
