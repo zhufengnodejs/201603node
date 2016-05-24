@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="zfpxMod">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+</head>
+<body ng-controller="ZfpxCtrl">
+    <div ng-repeat="item in items track by $index">{{item}}</div>
+</body>
+<script src="bower_components/angular/angular.js"></script>
+<script>
+    angular.module('zfpxMod',[]);
+    angular.module('zfpxMod').controller('ZfpxCtrl',function($scope){
+        $scope.items = [
+           'a','b','b'
+        ]
+
+    });
+</script>
+</html>
