@@ -22,6 +22,6 @@ var LikeButton = React.createClass({
 });
 
 ReactDOM.render(
-    <LikeButton name="章子怡"  />,
+    <LikeButton name="章子怡"/>,
     document.getElementById('app')
 );
