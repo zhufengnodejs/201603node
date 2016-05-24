@@ -11,18 +11,20 @@ var Suggestion = React.createClass({
           dataType:'jsonp',//响应的类型
           jsonp:'cb',//指定回调函数的名称
           data:{wd:value}, // 传递的参数
-          context:this,//绑定success回调函数中的this
+
+          //指定在回调函数中的this对象，上下文对象
+          //context:this,//绑定success回调函数中的this
           processData:true,//会把data转成查询字符串拼在url中
           success:function(result){
               //取得联想词的数组
               var data = result.s;
               //转成组件的数组
-              data = data.map(function(item){
-                  return <li className="list-group-item">{item}</li>
+              data = data.map(function(item,index){
+                  return <li className="list-group-item" key={index}>{item}</li>
               });
                 //设置状态
               this.setState({content:data});
-          }
+          }.bind(this)
       })
     },
     render:function(){
