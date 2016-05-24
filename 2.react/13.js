@@ -8,9 +8,13 @@ var Form = React.createClass({
             textAreaValue: '请输入'
         }
     },
+    submit:function(){
+        var form = this.state;
+        console.log(form);
+    },
     render:function(){
         return (
-            <form >
+            <form onSubmit={this.submit} >
                 <input className="form-control" type="text" defaultValue={this.state.inputValue}/>
                 <br/>
                 <select className="form-control"  defaultValue={this.state.selectValue} >
@@ -24,6 +28,7 @@ var Form = React.createClass({
                 <RadioButtons def={this.state.radioValue}></RadioButtons><br/>
                 <CheckButtons def={this.state.checkValue}></CheckButtons><br/>
                 <textarea className="form-control" defaultValue={this.state.textAreaValue}></textarea>
+                <input type="submit" value="提交 "/>
             </form>
         )
     }
