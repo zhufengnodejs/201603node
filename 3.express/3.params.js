@@ -1,5 +1,6 @@
 var express = require('express');
 var url = require('url');
+var util = require('util');
 var app = express();
 
 app.use(function(req,res,next){
@@ -20,5 +21,28 @@ app.get('/',function(req,res){
     console.log(req.query1);//请求的查询字符转成的对象
     res.end('hello');
 });
-
+//路径参数
+app.get('/users/:id/:name',function(req,res){
+    //req.params = {id:undefined,name:undefined}
+    console.log(req.params.id,req.params.name);
+    res.end(req.params.id+req.params.name);
+});
+app.use(function(req,res,next){
+    res.send = function(body){
+       var type = typeof body;
+        if(type == 'object'){
+            res.setHeader('Content-Type','text/html');
+            res.end(util.inspect(body));
+        }else if (type == 'number'){
+            res.end(""+body);
+        }
+    }
+});
+app.get('/date',function(req,res){
+    //res.send(new Date());
+    //res.send([{id:1},{id:2}]);
+    //res.send({"id":2});
+    //res.send(200);
+    //res.sendStatus(200);//如果返回响应码的时候必须用
+});
 app.listen(9090);
