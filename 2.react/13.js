@@ -10,7 +10,7 @@ var Form = React.createClass({
     },
     submit:function(e){
         e.preventDefault();
-        var form = {};
+        var form = this.state;
         var inputValue =   this.refs.inputText.value;
         var selectValue =   this.refs.selectText.value;
         var areaValue =   this.refs.areaText.value;
@@ -20,7 +20,7 @@ var Form = React.createClass({
             textAreaValue:areaValue
         },function(){
             console.log(this.state);
-        }.bind(this));
+        }.bind(this));//绑定this指针为form组件
         console.log(this.state);
         return false;
     },
