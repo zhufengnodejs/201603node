@@ -1,13 +1,13 @@
 var obj = {number:1};
 var fns = [
-    function(obj){
+    function(obj,next){
         setTimeout(function(){
             obj.number = obj.number*2;
             console.log('a');
             next(obj);
         },3000);
     },
-    function(obj){
+    function(obj,next){
         console.log(obj.number);
         console.log('b');
     }
