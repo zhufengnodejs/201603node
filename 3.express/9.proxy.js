@@ -3,6 +3,7 @@ var proxy = require('http-proxy').createProxyServer();
 var app = express();
 function proxyPass(config){
     return function(req,res,next){
+        //把当前请求交由目标应用服务来处理
         proxy.web(req,res,{
             target:config[req.headers['host'].split(':')[0]]
         });
