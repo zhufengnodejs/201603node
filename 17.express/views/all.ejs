@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%=title%></title>
+</head>
+<body>
+<%=title%>
+<%
+  for(var i=0;i<count;i++){
+      %>
+         <div>hello</div>
+      <%
+  }
+%>
+<%
+    if(word){
+     %>
+       <%-word%>
+     <%
+    }else{
+      %>
+       <div>word不存在</div>
+      <%
+    }
+ %>
+
+
+<%
+ books.forEach(function(book){
+     %><div><%=book%></div><%
+ });
+%>
+</body>
+</html>
