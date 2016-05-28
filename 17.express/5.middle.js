@@ -24,5 +24,12 @@ app.get('/user/:age',function(req,res){
   res.end('你已经成年了');
 });
 
+app.get(/\/goods\/(\d+)\/(\w+)/,function(req,res){
+    //当配置了路径参数之后，req上会多一个params的属性，它的key是冒号后面的字符串，值就是真正请求的时候传过来的字符串
+    console.log(req.params);
+    console.log(req.params[0],req.params[1]);
+    res.end('你已经成年了');
+});
+
 
 app.listen(9090);
