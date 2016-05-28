@@ -7,6 +7,7 @@ app.set('view engine','ejs');
 //设置模板的存放目录 绝对路径
 app.set('views',path.join(__dirname,'views'));
 app.use(function(req,res,next){
+    // filename 文件名称 data是数据
     res.render = function(filename,data){
         if(filename.indexOf('.')==-1){//没写后缀
             filename = filename+'.'+app.get('view engine');
@@ -17,7 +18,7 @@ app.use(function(req,res,next){
         console.log(file);
         //异步的方式读取文件的内容
         fs.readFile(file,'utf8',function(err,content){
-            content = content.replace(/<%=(\w+)%>/g, function (matched, group1) {
+            content = content.replace(/<%=\s*(\w+)\s*%>/g, function (matched, group1) {
                 // return data['title'];
                return data[group1];
             });
