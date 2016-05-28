@@ -23,5 +23,5 @@ app.all('*',function(req,res){
     res.setHeader('Content-Type','text/html;charset=utf-8');
     res.end('你请求的路径不存在');
 });
-
+module.exports = app;
 app.listen(9090);
