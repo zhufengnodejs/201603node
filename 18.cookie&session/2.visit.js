@@ -14,15 +14,24 @@ http.createServer(function(req,res){
       if(cookie){
          //取出原来的cookie值并转成对象
           var cookieObj = querystring.parse(cookie);
-          //在原来的基础上加1
-          var newVisit = parseInt(cookieObj.visit) + 1;
-          //重新写回到客户端
-          res.setHeader('Set-Cookie','visit='+newVisit);
-          res.end('欢迎你第'+newVisit+'次访问');
-        res.end(cookie);
+          if(cookieObj.visit){
+              //在原来的基础上加1
+              var newVisit = parseInt(cookieObj.visit) + 1;
+              //重新写回到客户端
+              res.setHeader('Set-Cookie','visit='+newVisit);
+              res.end('欢迎你第'+newVisit+'次访问');
+          }else{
+              //把visit=1通过响应头写入到客户端
+              res.setHeader('Set-Cookie','visit=1');
+              //第一次访问
+              res.end('欢迎你第一次访问');
+          }
+
       //如果cookie没有值，没有访问过没有种植过
       }else{
+          //把visit=1通过响应头写入到客户端
         res.setHeader('Set-Cookie','visit=1');
+          //第一次访问
         res.end('欢迎你第一次访问');
       }
   }else{
