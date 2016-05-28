@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var fs = require('fs');
+var mime = require('mime');
 var app = express();
 //静态文件中间件
 //static 会返回一个中间件函数
@@ -24,10 +25,13 @@ function static(dirname) {
         //判断文件是否存在
         fs.exists(fileName,function(exists){
             //如果有这样的一个文件
+
             if(exists){
                 //把文件把硬盘上读出来
                 fs.readFile(fileName,function(err,data){
-                    res.send(data);//写给客户端 写到响应中去
+                    //一定要设置正确 的内容类型，否则浏览器无法正常识别
+                    res.setHeader('Content-Type',mime.lookup(req.path));
+                    res.end(data);//写给客户端 写到响应中去
                 })
             }else{
                 //如果不是一个存在的文件，调用next交由下面的中间件或路由处理
