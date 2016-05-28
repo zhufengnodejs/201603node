@@ -7,8 +7,11 @@ var fs = require('fs');
 // /goods/add /goods/delete /goods/update
 app.get('*',function(req,res){
     var p = req.path;//pathname 路径名 端口号和问号中间的部分
+    //把路径进行分隔
    var parts = p.split('/');
+    //取出并加载模块
    var model = require('./mvc/'+parts[1]);
+    //调用模块中对应的方法进行处理
     model[parts[2]](req,res);
 });
 app.listen(9090);
