@@ -20,6 +20,11 @@ app.get('/index',function(req,res){
    //res.sendFile(path.resolve('index.html'));
    res.sendFile(path.join(__dirname,'index.html'));
 });
+//重定向
+// 响应码是302，响应头中有一个Location响应头，表示新的地址，要求客户端向新的地址重新发起请求
+app.get('/redirect',function(req,res){
+   res.redirect('/number');
+});
 
 
 
