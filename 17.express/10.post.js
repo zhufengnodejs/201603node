@@ -1,7 +1,12 @@
 var express = require('express');
 var querystring = require('querystring');
+var bodyParser = require('body-parser');
 var app = express();
-app.use(function(req,res,next){
+app.use(bodyParser.json());
+//extended=true会用querystring 模块把请求体转成对象
+//extended=false 会用bodyParser自己编写方法把请求体转成对象
+app.use(bodyParser.urlencoded({extended:true}));
+/*app.use(function(req,res,next){
     var str = '';//先得到空字符串
     req.setEncoding('utf8');//设置请求流中的编码
     req.on('data',function(data){//当监听 到data数据之后
@@ -19,7 +24,7 @@ app.use(function(req,res,next){
         }
         next();
     });
-});
+});*/
 app.post('/reg',function(req,res){
     console.log(req.body);
         res.send(req.body);//在路由中输出请求体
