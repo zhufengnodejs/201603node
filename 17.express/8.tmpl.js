@@ -11,11 +11,15 @@ app.get('/',function(req,res){
     /**
      * 1. 找到正确的模板，读取模板的内容
      * 2. 把模板里的变量替换掉
+     *
+     * 1. = 表示把变量转义后输出
+     * 2. - 表示把变量渲染成真实HTML内容
      */
    res.render('index',{
        title:'zfpx',
        count:3,
-       word:'<h1>hello</h1>'
+       word:'<h1>hello</h1>',
+       books:['node.js','javascript','js']
    });
 });
 
