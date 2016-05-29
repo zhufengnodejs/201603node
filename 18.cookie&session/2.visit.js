@@ -13,7 +13,7 @@ http.createServer(function(req,res){
       //如果cookie有值，已经访问过，种植过cookie
       if(cookie){
          //取出原来的cookie值并转成对象
-          var cookieObj = querystring.parse(cookie);
+          var cookieObj = querystring.parse(cookie,'; ');//手工指定字符分隔符
           if(cookieObj.visit){
               //在原来的基础上加1
               var newVisit = parseInt(cookieObj.visit) + 1;
