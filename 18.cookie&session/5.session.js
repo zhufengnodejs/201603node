@@ -9,7 +9,7 @@ var SESSION_KEY = 'session.id'
 //当用户访问根目录的时候 执行对应的回调函数
 app.get('/',function(req,res){
     res.setHeader('Content-Type','text/html;charset=utf-8');
-   // 1. 先取出cookie中的sessionId
+   // 1. 先取出cookie中的sessionId 卡号
     var sessionId = req.cookies[SESSION_KEY];
     // 如果有卡号的，也就是有ID的话 老顾客
     if(sessionId){
