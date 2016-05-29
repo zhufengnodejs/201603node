@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onLoad="checkUser()">
+<input type="text" id="username">
+</body>
+<script>
+    function getUsername(){
+        // "name=zfpx; age=6; username=6"
+        var cookie = document.cookie;
+        var username;
+        cookie.split('; ').forEach(function(item){
+            var kv = item.split('=');
+            console.log(item);
+            if(kv[0] == 'username'){
+                username =  kv[1];
+            }
+        });
+        return username;
+    }
+    //设置cookie
+    function setUsername(username){
+        document.cookie = "username="+username;
+    }
+    function checkUser(){
+        //从cookie中获取用户名
+        var username = getUsername();
+        console.log(username);
+        //如果username有值，则意味着已经登陆过
+        if(username){
+            alert('欢迎'+username+'再次光临');
+            document.querySelector('#username').value = username;//把用户名填写到输入框中
+        }else{
+            username = prompt('请输入用户名');//提示用户输入用户名
+            if(username){
+                setUsername(username);//设置到cookie当中去
+            }
+        }
+    }
+</script>
+</html>
