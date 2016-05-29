@@ -23,4 +23,11 @@ var personEntity = new personModel({
     age:20,
 });
 //保存到当前的数据库
-personEntity.save();
+personEntity.save(function(err,doc){
+    if(err){
+        console.log(err);
+    }else{
+        //保存成功之后的文档
+        console.log(doc);
+    }
+});
