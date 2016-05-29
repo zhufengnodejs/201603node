@@ -15,13 +15,20 @@ app.get('/',function(req,res){
     if(sessionId){
         //取出此卡号对应的信息，余额
         var sessionObj = sessions[sessionId];
-        //扣掉10块钱
-        sessionObj.balance = sessionObj.balance -10;
-        res.send('欢迎你老顾客，你卡上还剩'+sessionObj.balance);
+        if(sessionObj){
+            //扣掉10块钱
+            sessionObj.balance = sessionObj.balance -10;
+            res.send('欢迎你老顾客，你卡上还剩'+sessionObj.balance);
+        }else{
+            genId(res);
+        }
     //如果没有的话就是新顾客
     }else{
+        genId(res);
+    }
+    function genId(res){
         //由店家生成一个唯一的卡号
-        var id = Date.now()+''+Math.random;
+        var id = Date.now()+''+Math.random();
         //要在店家的小本上记录一下此卡号对应的余额
         sessions[id] = {balance:100};
         //把这个卡发给顾客带回家
